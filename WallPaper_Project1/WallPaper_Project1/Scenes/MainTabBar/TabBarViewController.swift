@@ -15,36 +15,64 @@ final class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configView()
+        configView()
+        customTabBar()
     }
 
     private func configView() {
-        self.tabBar.backgroundColor = .white
-        self.setViewControllers([imageViewController, videoScreenViewController,
+        setViewControllers([imageViewController, videoScreenViewController,
                                  searchViewController, personalViewController], animated: true)
-        self.configTabBarItem()
+        configTabBarItem()
     }
 
     private func configTabBarItem() {
-        guard let items = self.tabBar.items else {return}
-        for index in 0..<items.count {
-            switch ItemTabBar(rawValue: index) {
-            case .photoScreen:
-                items[index].title = ItemTabBar.photoScreen.getTitle()
-                items[index].image = UIImage(systemName: ItemTabBar.photoScreen.getIconName())
-            case .livePhotoScreen:
-                items[index].title = ItemTabBar.livePhotoScreen.getTitle()
-                items[index].image = UIImage(systemName: ItemTabBar.livePhotoScreen.getIconName())
-            case .searchScreen:
-                items[index].title = ItemTabBar.searchScreen.getTitle()
-                items[index].image = UIImage(systemName: ItemTabBar.searchScreen.getIconName())
-            case .personalScreen:
-                items[index].title = ItemTabBar.personalScreen.getTitle()
-                items[index].image = UIImage(systemName: ItemTabBar.personalScreen.getIconName())
-            default:
-                break
+        if let items = tabBar.items {
+            items.enumerated().forEach { (index, item) in
+                switch ItemTabBar(rawValue: index) {
+                case .photoScreen:
+                    item.title = ItemTabBar.photoScreen.getTitle()
+                    item.image = UIImage(systemName: ItemTabBar.photoScreen.getIconName())
+                case .livePhotoScreen:
+                    item.title = ItemTabBar.livePhotoScreen.getTitle()
+                    item.image = UIImage(systemName: ItemTabBar.livePhotoScreen.getIconName())
+                case .searchScreen:
+                    item.title = ItemTabBar.searchScreen.getTitle()
+                    item.image = UIImage(systemName: ItemTabBar.searchScreen.getIconName())
+                case .personalScreen:
+                    item.title = ItemTabBar.personalScreen.getTitle()
+                    item.image = UIImage(systemName: ItemTabBar.personalScreen.getIconName())
+                default:
+                    break
+                }
             }
         }
+    }
+
+    private func customTabBar() {
+        drawLayerTabBar()
+        if let items = tabBar.items {
+            items.forEach { item in
+                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -15, right: 0)
+            }
+        }
+        tabBar.itemWidth = 40.0
+        tabBar.itemPositioning = .centered
+    }
+
+    private func drawLayerTabBar() {
+        let layer = CAShapeLayer()
+        let roundRect = CGRect(x: 40, y: tabBar.bounds.minY, width: tabBar.bounds.width - 80, height: tabBar.bounds.height + 12)
+        layer.path = UIBezierPath(roundedRect: roundRect, cornerRadius: (tabBar.frame.width / 2)).cgPath
+        layer.shadowColor = UIColor.white.cgColor
+        layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+        layer.shadowRadius = 25.0
+        layer.shadowOpacity = 0.5
+        layer.borderWidth = 1.0
+        layer.opacity = 1.0
+        layer.isHidden = false
+        layer.masksToBounds = false
+        layer.fillColor = UIColor.white.cgColor
+        tabBar.layer.insertSublayer(layer, at: 0)
     }
 
 }
