@@ -13,15 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowSence = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowSence)
-        window?.frame = UIScreen.main.bounds
-        window?.rootViewController = TabBarViewController()
-        window?.makeKeyAndVisible()
+        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -47,5 +42,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
 }
