@@ -12,7 +12,7 @@ enum ItemTabBar: Int {
     case livePhotoScreen = 1
     case searchScreen = 2
     case personalScreen = 3
-    
+
     func getTitle() -> String {
         switch self {
         case .photoScreen:
@@ -25,7 +25,6 @@ enum ItemTabBar: Int {
             return "Personal"
         }
     }
-    
     func getIconName() -> String {
         switch self {
         case .photoScreen:
@@ -39,4 +38,3 @@ enum ItemTabBar: Int {
         }
     }
 }
-

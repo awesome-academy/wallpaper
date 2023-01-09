@@ -27,7 +27,6 @@
 		1A8C4A382969389F00063D38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A372969389F00063D38 /* TabBarViewController.swift */; };
 		1A8C4A3C29693AD100063D38 /* VideoScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3A29693AD100063D38 /* VideoScreenViewController.swift */; };
 		1A8C4A3D29693AD100063D38 /* VideoScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3B29693AD100063D38 /* VideoScreenViewController.xib */; };
-		1A8C4A3F29693FF900063D38 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3E29693FF900063D38 /* MainTabBar.swift */; };
 		1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A412969484600063D38 /* AuthorViewController.swift */; };
 		1A8C4A442969484600063D38 /* AuthorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A422969484600063D38 /* AuthorViewController.xib */; };
 		1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A462969494D00063D38 /* SearchViewController.swift */; };
@@ -59,7 +58,6 @@
 		1A8C4A372969389F00063D38 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1A8C4A3A29693AD100063D38 /* VideoScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScreenViewController.swift; sourceTree = "<group>"; };
 		1A8C4A3B29693AD100063D38 /* VideoScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoScreenViewController.xib; sourceTree = "<group>"; };
-		1A8C4A3E29693FF900063D38 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		1A8C4A412969484600063D38 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		1A8C4A422969484600063D38 /* AuthorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorViewController.xib; sourceTree = "<group>"; };
 		1A8C4A462969494D00063D38 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 			children = (
 				1A8C4A2629681F4C00063D38 /* Main.storyboard */,
 				1A8C4A372969389F00063D38 /* TabBarViewController.swift */,
-				1A8C4A3E29693FF900063D38 /* MainTabBar.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -308,6 +305,7 @@
 				1A89CA472967BF5200F369C9 /* Sources */,
 				1A89CA482967BF5200F369C9 /* Frameworks */,
 				1A89CA492967BF5200F369C9 /* Resources */,
+				1A3879C8296C08A60041B289 /* Swiftint */,
 			);
 			buildRules = (
 			);
@@ -369,6 +367,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A3879C8296C08A60041B289 /* Swiftint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1A89CA472967BF5200F369C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -389,7 +408,6 @@
 				1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */,
 				1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */,
 				1A8C4A2E296827AA00063D38 /* Error.swift in Sources */,
-				1A8C4A3F29693FF900063D38 /* MainTabBar.swift in Sources */,
 				1A89CA512967BF5200F369C9 /* SceneDelegate.swift in Sources */,
 				1A8C4A322968288800063D38 /* Constant.swift in Sources */,
 				1A8C4A3C29693AD100063D38 /* VideoScreenViewController.swift in Sources */,

@@ -10,12 +10,10 @@ import Foundation
 class APICaller {
     static let shared = APICaller()
     private let session: URLSession
-    
     private init() {
         let config = URLSessionConfiguration.default
         session = URLSession(configuration: config)
     }
-    
     func getJSON<T: Codable>(urlApi: String, completion: @escaping (T?, Error?) -> Void) {
         guard let url = URL(string: urlApi) else {
             return
@@ -42,15 +40,13 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode(T.self, from: data)
                 completion(results, nil)
-            }
-            catch let error {
+            } catch let error {
                 print(error)
             }
         }
         task.resume()
     }
-    
-    func getImage(imageURL: String ,completion: @escaping (Data?, Error?) -> (Void)) {
+    func getImage(imageURL: String, completion: @escaping (Data?, Error?) -> Void) {
         guard let url = URL(string: imageURL) else {
             completion(nil, NetworkError.badData)
             return

@@ -15,5 +15,4 @@ final class VideoScreenViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
 }

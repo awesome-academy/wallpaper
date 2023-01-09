@@ -12,18 +12,19 @@ final class TabBarViewController: UITabBarController {
     let videoScreenViewController = VideoScreenViewController()
     let searchViewController = SearchViewController()
     let personalViewController = PersonalViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configView()
     }
-    
+
     private func configView() {
         self.tabBar.backgroundColor = .white
-        self.setViewControllers([imageViewController,videoScreenViewController,searchViewController, personalViewController], animated: true)
+        self.setViewControllers([imageViewController, videoScreenViewController,
+                                 searchViewController, personalViewController], animated: true)
         self.configTabBarItem()
     }
-    
+
     private func configTabBarItem() {
         guard let items = self.tabBar.items else {return}
         for index in 0..<items.count {
