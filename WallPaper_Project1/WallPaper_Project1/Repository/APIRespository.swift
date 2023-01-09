@@ -8,8 +8,9 @@
 import Foundation
 
 protocol APIRespository {
-    associatedtype I
-    associatedtype V
-    func getImagesByName(name: String, completion: @escaping ([I]?, Error?) -> Void)
-    func getVideosByName(name: String, completion: @escaping ([V]?, Error?) -> Void)
+    associatedtype IMAGE
+    associatedtype VIDEO
+
+    func getImagesByName(name: String, completion: @escaping ([IMAGE]?, Error?) -> Void)
+    func getVideosByName(name: String, completion: @escaping ([VIDEO]?, Error?) -> Void)
 }
