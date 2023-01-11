@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ReuseCell where Self : AnyObject {
+extension ReuseCell where Self: AnyObject {
     static var defaultReuseIdentifier: String {
         return String(describing: self)
     }
@@ -21,7 +21,7 @@ extension UICollectionView {
     func register<T: UICollectionViewCell>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil) where T: ReuseCell {
         let identifier = T.defaultReuseIdentifier
         let nibName = T.nibName
-        var bundle: Bundle? = nil
+        var bundle: Bundle?
         if let bundleName = bundleClass {
             bundle = Bundle(for: bundleName)
         }
@@ -32,7 +32,6 @@ extension UICollectionView {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
               fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
           }
-
           return cell
       }
 

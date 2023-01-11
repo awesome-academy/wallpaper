@@ -18,6 +18,10 @@
 		1A7DF37F296E712F0013C264 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7DF37E296E712F0013C264 /* DetailViewController.xib */; };
 		1A7DF398296E80C90013C264 /* ReuseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF397296E80C90013C264 /* ReuseCellProtocol.swift */; };
 		1A7DF39A296E81470013C264 /* ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF399296E81470013C264 /* ReuseCell.swift */; };
+		1A7DF39C296EB9E40013C264 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF39B296EB9E40013C264 /* ImageView.swift */; };
+		1A7DF39F296EBA350013C264 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF39E296EBA350013C264 /* HexColor.swift */; };
+		1A7DF3A3296F00B80013C264 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF3A1296F00B80013C264 /* PopUpViewController.swift */; };
+		1A7DF3A4296F00B80013C264 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7DF3A2296F00B80013C264 /* PopUpViewController.xib */; };
 		1A89CA4F2967BF5200F369C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */; };
 		1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA572967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld */; };
 		1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A89CA5A2967BF5300F369C9 /* Assets.xcassets */; };
@@ -41,6 +45,8 @@
 		1A8C4A492969494D00063D38 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A472969494D00063D38 /* SearchViewController.xib */; };
 		1A8C4A4D29694A3800063D38 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A4B29694A3800063D38 /* PersonalViewController.swift */; };
 		1A8C4A4E29694A3800063D38 /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A4C29694A3800063D38 /* PersonalViewController.xib */; };
+		1AA892F4296F9D9E00B7C668 /* GetDataFromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA892F3296F9D9E00B7C668 /* GetDataFromPlist.swift */; };
+		1AA8937F297017B000B7C668 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8937E297017B000B7C668 /* Data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +61,10 @@
 		1A7DF37E296E712F0013C264 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		1A7DF397296E80C90013C264 /* ReuseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseCellProtocol.swift; sourceTree = "<group>"; };
 		1A7DF399296E81470013C264 /* ReuseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseCell.swift; sourceTree = "<group>"; };
+		1A7DF39B296EB9E40013C264 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		1A7DF39E296EBA350013C264 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
+		1A7DF3A1296F00B80013C264 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		1A7DF3A2296F00B80013C264 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		1A89CA4B2967BF5200F369C9 /* WallPaper_Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallPaper_Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A89CA582967BF5200F369C9 /* WallPaper_Project1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallPaper_Project1.xcdatamodel; sourceTree = "<group>"; };
@@ -80,6 +90,8 @@
 		1A8C4A472969494D00063D38 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		1A8C4A4B29694A3800063D38 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		1A8C4A4C29694A3800063D38 /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
+		1AA892F3296F9D9E00B7C668 /* GetDataFromPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromPlist.swift; sourceTree = "<group>"; };
+		1AA8937E297017B000B7C668 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				1A37F730296D6DA60021C37A /* ViewExtension.swift */,
+				1A7DF39B296EB9E40013C264 /* ImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +157,23 @@
 			path = DetailScreen;
 			sourceTree = "<group>";
 		};
+		1A7DF39D296EBA120013C264 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				1A7DF39E296EBA350013C264 /* HexColor.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		1A7DF3A0296F008E0013C264 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				1A7DF3A1296F00B80013C264 /* PopUpViewController.swift */,
+				1A7DF3A2296F00B80013C264 /* PopUpViewController.xib */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
 		1A89CA422967BF5100F369C9 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +203,7 @@
 				1A89CA5A2967BF5300F369C9 /* Assets.xcassets */,
 				1A89CA5F2967BF5300F369C9 /* Info.plist */,
 				1A89CA572967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld */,
+				1AA8937E297017B000B7C668 /* Data.plist */,
 			);
 			path = WallPaper_Project1;
 			sourceTree = "<group>";
@@ -239,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				1A8C4A2A2968272A00063D38 /* APICaller.swift */,
+				1AA892F3296F9D9E00B7C668 /* GetDataFromPlist.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -246,6 +278,7 @@
 		1A89CA942968025200F369C9 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				1A7DF3A0296F008E0013C264 /* PopUp */,
 				1A3879D7296D11640041B289 /* ReuseCell */,
 				1A3879D0296C486C0041B289 /* ImageCell */,
 				1A3879CB296C485C0041B289 /* CategoryCell */,
@@ -272,6 +305,7 @@
 		1A89CA9B2968036F00F369C9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1A7DF39D296EBA120013C264 /* Color */,
 				1A37F72F296D6D8F0021C37A /* View */,
 				1A3879DA296D1C4F0041B289 /* ReuseCell */,
 			);
@@ -414,6 +448,7 @@
 				1A8C4A3D29693AD100063D38 /* VideoScreenViewController.xib in Resources */,
 				1A89CAB12968137800F369C9 /* Launch Screen.storyboard in Resources */,
 				1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */,
+				1AA8937F297017B000B7C668 /* Data.plist in Resources */,
 				1A7DF37F296E712F0013C264 /* DetailViewController.xib in Resources */,
 				1A3879D3296C486D0041B289 /* ImageCollectionViewCell.xib in Resources */,
 				1A8C4A2729681F4C00063D38 /* Main.storyboard in Resources */,
@@ -421,6 +456,7 @@
 				1A3879CF296C485C0041B289 /* CategoryCollectionViewCell.xib in Resources */,
 				1A8C4A4E29694A3800063D38 /* PersonalViewController.xib in Resources */,
 				1A8C4A492969494D00063D38 /* SearchViewController.xib in Resources */,
+				1A7DF3A4296F00B80013C264 /* PopUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +465,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1A3879C8296C08A60041B289 /* Swiftint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -441,7 +477,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -452,12 +488,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7DF39C296EB9E40013C264 /* ImageView.swift in Sources */,
 				1A89CA4F2967BF5200F369C9 /* AppDelegate.swift in Sources */,
 				1A89CA852967F1D900F369C9 /* VideoModel.swift in Sources */,
 				1A7DF37D296E71230013C264 /* DetailViewController.swift in Sources */,
 				1A89CA832967F1CA00F369C9 /* ImageModel.swift in Sources */,
 				1A89CAAB2968133000F369C9 /* ImageViewController.swift in Sources */,
 				1A3879C2296BC4D80041B289 /* Others.swift in Sources */,
+				1A7DF3A3296F00B80013C264 /* PopUpViewController.swift in Sources */,
 				1A7DF398296E80C90013C264 /* ReuseCellProtocol.swift in Sources */,
 				1A7DF39A296E81470013C264 /* ReuseCell.swift in Sources */,
 				1A37F731296D6DA60021C37A /* ViewExtension.swift in Sources */,
@@ -468,12 +506,14 @@
 				1A8C4A30296827F100063D38 /* MethodReqest.swift in Sources */,
 				1A8C4A292968262A00063D38 /* APIRespository.swift in Sources */,
 				1A3879CE296C485C0041B289 /* CategoryCollectionViewCell.swift in Sources */,
+				1A7DF39F296EBA350013C264 /* HexColor.swift in Sources */,
 				1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */,
 				1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */,
 				1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */,
 				1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */,
 				1A8C4A2E296827AA00063D38 /* Error.swift in Sources */,
 				1A8C4A322968288800063D38 /* Constant.swift in Sources */,
+				1AA892F4296F9D9E00B7C668 /* GetDataFromPlist.swift in Sources */,
 				1A8C4A3C29693AD100063D38 /* VideoScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -585,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -8,7 +8,6 @@
 import UIKit
 
 final class CategoryCollectionViewCell: UICollectionViewCell, ReuseCell {
-    
     @IBOutlet private weak var categoryNameLabel: UILabel!
     @IBOutlet private weak var containerView: UIView!
     
