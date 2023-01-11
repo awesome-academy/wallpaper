@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A37F731296D6DA60021C37A /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37F730296D6DA60021C37A /* ViewExtension.swift */; };
 		1A3879C2296BC4D80041B289 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3879C1296BC4D80041B289 /* Others.swift */; };
 		1A3879CE296C485C0041B289 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3879CC296C485C0041B289 /* CategoryCollectionViewCell.swift */; };
 		1A3879CF296C485C0041B289 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3879CD296C485C0041B289 /* CategoryCollectionViewCell.xib */; };
 		1A3879D3296C486D0041B289 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3879D1296C486C0041B289 /* ImageCollectionViewCell.xib */; };
 		1A3879D4296C486D0041B289 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3879D2296C486C0041B289 /* ImageCollectionViewCell.swift */; };
 		1A3879D6296C49200041B289 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3879D5296C49200041B289 /* ImageViewController.xib */; };
-		1A3879D9296D11920041B289 /* ReuseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3879D8296D11920041B289 /* ReuseCellProtocol.swift */; };
-		1A3879DC296D1C670041B289 /* ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3879DB296D1C670041B289 /* ReuseCell.swift */; };
+		1A7DF37D296E71230013C264 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF37C296E71230013C264 /* DetailViewController.swift */; };
+		1A7DF37F296E712F0013C264 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7DF37E296E712F0013C264 /* DetailViewController.xib */; };
+		1A7DF398296E80C90013C264 /* ReuseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF397296E80C90013C264 /* ReuseCellProtocol.swift */; };
+		1A7DF39A296E81470013C264 /* ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF399296E81470013C264 /* ReuseCell.swift */; };
 		1A89CA4F2967BF5200F369C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */; };
 		1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA572967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld */; };
 		1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A89CA5A2967BF5300F369C9 /* Assets.xcassets */; };
@@ -41,14 +44,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A37F730296D6DA60021C37A /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		1A3879C1296BC4D80041B289 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		1A3879CC296C485C0041B289 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A3879CD296C485C0041B289 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		1A3879D1296C486C0041B289 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		1A3879D2296C486C0041B289 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A3879D5296C49200041B289 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
-		1A3879D8296D11920041B289 /* ReuseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReuseCellProtocol.swift; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/wallpaper/WallPaper_Project1/WallPaper_Project1/Widgets/ImageCell/ReuseCellProtocol.swift"; sourceTree = "<group>"; };
-		1A3879DB296D1C670041B289 /* ReuseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReuseCell.swift; path = ../../../../../../../ReuseCell.swift; sourceTree = "<group>"; };
+		1A7DF37C296E71230013C264 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1A7DF37E296E712F0013C264 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		1A7DF397296E80C90013C264 /* ReuseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseCellProtocol.swift; sourceTree = "<group>"; };
+		1A7DF399296E81470013C264 /* ReuseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseCell.swift; sourceTree = "<group>"; };
 		1A89CA4B2967BF5200F369C9 /* WallPaper_Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallPaper_Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A89CA582967BF5200F369C9 /* WallPaper_Project1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallPaper_Project1.xcdatamodel; sourceTree = "<group>"; };
@@ -87,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A37F72F296D6D8F0021C37A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A37F730296D6DA60021C37A /* ViewExtension.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1A3879CB296C485C0041B289 /* CategoryCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +122,7 @@
 		1A3879D7296D11640041B289 /* ReuseCell */ = {
 			isa = PBXGroup;
 			children = (
-				1A3879D8296D11920041B289 /* ReuseCellProtocol.swift */,
+				1A7DF397296E80C90013C264 /* ReuseCellProtocol.swift */,
 			);
 			path = ReuseCell;
 			sourceTree = "<group>";
@@ -116,9 +130,18 @@
 		1A3879DA296D1C4F0041B289 /* ReuseCell */ = {
 			isa = PBXGroup;
 			children = (
-				1A3879DB296D1C670041B289 /* ReuseCell.swift */,
+				1A7DF399296E81470013C264 /* ReuseCell.swift */,
 			);
 			path = ReuseCell;
+			sourceTree = "<group>";
+		};
+		1A3879DD296D2EDF0041B289 /* DetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1A7DF37C296E71230013C264 /* DetailViewController.swift */,
+				1A7DF37E296E712F0013C264 /* DetailViewController.xib */,
+			);
+			path = DetailScreen;
 			sourceTree = "<group>";
 		};
 		1A89CA422967BF5100F369C9 = {
@@ -144,7 +167,6 @@
 				1A89CA9B2968036F00F369C9 /* Extensions */,
 				1A89CA9A2968034C00F369C9 /* Repository */,
 				1A89CA942968025200F369C9 /* Widgets */,
-				1A89CA932968021B00F369C9 /* Utils */,
 				1A89CA712967E4EB00F369C9 /* Application */,
 				1A89CA6E2967E4A200F369C9 /* Data */,
 				1A89CA652967CCF900F369C9 /* Scenes */,
@@ -158,6 +180,7 @@
 		1A89CA652967CCF900F369C9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1A3879DD296D2EDF0041B289 /* DetailScreen */,
 				1A8C4A4A29694A1800063D38 /* PersonalScreen */,
 				1A8C4A45296948A600063D38 /* SearchScreen */,
 				1A8C4A402969482000063D38 /* AuthorScreen */,
@@ -198,7 +221,6 @@
 		1A89CA732967E52200F369C9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1A89CA95296802D100F369C9 /* Local */,
 				1A89CA742967E53800F369C9 /* Remote */,
 			);
 			path = Source;
@@ -221,13 +243,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		1A89CA932968021B00F369C9 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		1A89CA942968025200F369C9 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,13 +251,6 @@
 				1A3879CB296C485C0041B289 /* CategoryCell */,
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		1A89CA95296802D100F369C9 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		1A89CA992968032100F369C9 /* Service */ = {
@@ -264,6 +272,7 @@
 		1A89CA9B2968036F00F369C9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1A37F72F296D6D8F0021C37A /* View */,
 				1A3879DA296D1C4F0041B289 /* ReuseCell */,
 			);
 			path = Extensions;
@@ -405,6 +414,7 @@
 				1A8C4A3D29693AD100063D38 /* VideoScreenViewController.xib in Resources */,
 				1A89CAB12968137800F369C9 /* Launch Screen.storyboard in Resources */,
 				1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */,
+				1A7DF37F296E712F0013C264 /* DetailViewController.xib in Resources */,
 				1A3879D3296C486D0041B289 /* ImageCollectionViewCell.xib in Resources */,
 				1A8C4A2729681F4C00063D38 /* Main.storyboard in Resources */,
 				1A8C4A442969484600063D38 /* AuthorViewController.xib in Resources */,
@@ -419,7 +429,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1A3879C8296C08A60041B289 /* Swiftint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -431,7 +441,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -444,11 +454,14 @@
 			files = (
 				1A89CA4F2967BF5200F369C9 /* AppDelegate.swift in Sources */,
 				1A89CA852967F1D900F369C9 /* VideoModel.swift in Sources */,
+				1A7DF37D296E71230013C264 /* DetailViewController.swift in Sources */,
 				1A89CA832967F1CA00F369C9 /* ImageModel.swift in Sources */,
 				1A89CAAB2968133000F369C9 /* ImageViewController.swift in Sources */,
 				1A3879C2296BC4D80041B289 /* Others.swift in Sources */,
+				1A7DF398296E80C90013C264 /* ReuseCellProtocol.swift in Sources */,
+				1A7DF39A296E81470013C264 /* ReuseCell.swift in Sources */,
+				1A37F731296D6DA60021C37A /* ViewExtension.swift in Sources */,
 				1A8C4A382969389F00063D38 /* TabBarViewController.swift in Sources */,
-				1A3879DC296D1C670041B289 /* ReuseCell.swift in Sources */,
 				1A3879D4296C486D0041B289 /* ImageCollectionViewCell.swift in Sources */,
 				1A8C4A2B2968272A00063D38 /* APICaller.swift in Sources */,
 				1A8C4A4D29694A3800063D38 /* PersonalViewController.swift in Sources */,
@@ -458,7 +471,6 @@
 				1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */,
 				1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */,
 				1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */,
-				1A3879D9296D11920041B289 /* ReuseCellProtocol.swift in Sources */,
 				1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */,
 				1A8C4A2E296827AA00063D38 /* Error.swift in Sources */,
 				1A8C4A322968288800063D38 /* Constant.swift in Sources */,
@@ -519,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -573,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

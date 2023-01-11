@@ -12,7 +12,7 @@ final class ImageViewController: UIViewController {
     @IBOutlet private weak var imageCollectionView: UICollectionView!
     @IBOutlet private weak var containerCategoriesView: UIView!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configCategoryView()
@@ -56,4 +56,9 @@ extension ImageViewController: UICollectionViewDataSource {
 }
 
 extension ImageViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailScreen = DetailViewController(nibName: "DetailViewController", bundle: nil)
+        detailScreen.modalPresentationStyle = .fullScreen
+        present(detailScreen, animated: true, completion: nil)
+    }
 }
