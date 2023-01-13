@@ -61,7 +61,8 @@ final class TabBarViewController: UITabBarController {
 
     private func drawLayerTabBar() {
         let layer = CAShapeLayer()
-        let roundRect = CGRect(x: 40, y: tabBar.bounds.minY, width: tabBar.bounds.width - 80, height: tabBar.bounds.height + 12)
+        let roundRect = CGRect(x: 40, y: tabBar.bounds.minY, width: tabBar.bounds.width - 80,
+                               height: tabBar.bounds.height + 12)
         layer.path = UIBezierPath(roundedRect: roundRect, cornerRadius: (tabBar.frame.width / 2)).cgPath
         layer.shadowColor = UIColor.white.cgColor
         layer.shadowOffset = CGSize(width: 5.0, height: 5.0)

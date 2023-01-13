@@ -81,13 +81,13 @@
                         <constraint firstItem="S5E-2e-8iT" firstAttribute="leading" secondItem="gth-so-yWm" secondAttribute="leading" constant="12" id="yHF-0e-vaR"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Hav-eg-3dn">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Hav-eg-3dn">
                     <rect key="frame" x="10" y="181" width="394" height="715"/>
                     <color key="backgroundColor" red="0.1254901886" green="0.1254901886" blue="0.1254901886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="2" id="Pj6-y5-xsc">
                         <size key="itemSize" width="116" height="210"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="50" height="10"/>
+                        <size key="footerReferenceSize" width="50" height="50"/>
                         <inset key="sectionInset" minX="5" minY="6" maxX="5" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>

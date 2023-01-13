@@ -38,3 +38,13 @@ enum ItemTabBar: Int {
         }
     }
 }
+
+enum Category: String {
+    case curated = "Currated"
+    case nature = "Nature"
+    case sea = "Sea"
+    case sky = "Sky"
+    case animal = "Animal"
+    case car = "Car"
+    case robot = "Robot"
+}

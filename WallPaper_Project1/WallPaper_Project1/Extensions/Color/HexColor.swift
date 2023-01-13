@@ -10,6 +10,8 @@ import UIKit
 
 extension UIColor {
     static let loadBackgroundColor = UIColor(hexString: "#666666", alpha: 0.8)
+    static let seclectedColor = UIColor(#colorLiteral(red: 0.07710499316, green: 0.2985935807, blue: 0.4225793481, alpha: 1))
+    static let primaryColor = UIColor(#colorLiteral(red: 0.1254901886, green: 0.1254901886, blue: 0.1254901886, alpha: 1))
 
     convenience init(hexString: String, alpha: CGFloat) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

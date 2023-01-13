@@ -15,10 +15,13 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var informationView: UIView!
     @IBOutlet private weak var colorImageLabel: UILabel!
-    @IBOutlet private weak var idImageLabel: UILabel!
+    @IBOutlet private weak var bottomButtonViewContainer: UIView!
+    @IBOutlet private weak var topButtonViewContainer: UIView!
+    @IBOutlet private weak var imageIdLabel: UILabel!
     @IBOutlet private weak var heightImageLabel: UILabel!
     @IBOutlet private weak var widthImageLabel: UILabel!
     private let apiCaller = APICaller.shared
+    private var imageData: Data?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,26 @@ final class DetailViewController: UIViewController {
         arrowTriangleImageView.isHidden = true
         downloadButton.layer.cornerRadius = 20
         informationView.layer.cornerRadius = 12
+        bottomButtonViewContainer.setGradientBackground(colorTop: UIColor.clear.cgColor,
+                                                        colorBottom: UIColor.black.cgColor)
+        topButtonViewContainer.setGradientBackground(colorTop: UIColor.black.cgColor,
+                                                     colorBottom: UIColor.clear.cgColor)
+    }
+
+    @IBAction private func downloadButtonTapped(_ sender: Any) {
+        let waitingLoadingViewController = WaitingLoadingViewController(nibName: "WaitingLoadingViewController",
+                                        bundle: nil)
+        waitingLoadingViewController.updateView(status: true)
+        waitingLoadingViewController.modalPresentationStyle = .fullScreen
+       present(waitingLoadingViewController, animated: true)
+        if let imageData = imageData {
+            if let imageDownload = UIImage(data: imageData) {
+                DispatchQueue.global().async {
+                    UIImageWriteToSavedPhotosAlbum(imageDownload, nil, nil, nil)
+                }
+                waitingLoadingViewController.updateView(status: false)
+            }
+        }
     }
 
     @IBAction private func infomationButtonTapped(_ sender: Any) {
@@ -62,6 +85,7 @@ final class DetailViewController: UIViewController {
                 self.showPopUp(notice: "\(error)")
             }
             if let data = data {
+                self.imageData = data
                 DispatchQueue.main.async {
                     self.detailImageView.image = UIImage(data: data)
                 }
@@ -77,7 +101,7 @@ final class DetailViewController: UIViewController {
         authorNameLabel.text = image.photographer
         heightImageLabel.text = "Height: \(image.height)"
         widthImageLabel.text = "Width: \(image.width)"
-        idImageLabel.text = "Id: \(image.id)"
+        imageIdLabel.text = "Id: \(image.id)"
         colorImageLabel.text = "Color: \(image.avgColor)"
     }
 }
