@@ -10,6 +10,7 @@ import Foundation
 class APICaller {
     static let shared = APICaller()
     private let session: URLSession
+    private var imagesCache = NSCache<NSString, NSData>()
 
     private init() {
         let config = URLSessionConfiguration.default
@@ -26,7 +27,7 @@ class APICaller {
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers
         request.httpMethod = MethodRequest.get.rawValue
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let self = self else {return}
             let task = self.session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
                 if let error = error {
@@ -57,34 +58,42 @@ class APICaller {
     }
 
     func getImage(imageURL: String, completion: @escaping (Data?, Error?) -> Void) {
+        if let imageData = imagesCache.object(forKey: imageURL as NSString) {
+            completion(imageData as Data, nil)
+            return
+        }
         guard let url = URL(string: imageURL) else {
             completion(nil, NetworkError.badData)
             return
         }
-        let task = session.downloadTask(with: url) { (localUrl: URL?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                completion(nil, error)
-                return
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else {return}
+            let task = self.session.downloadTask(with: url) { (localUrl: URL?, response: URLResponse?, error: Error?) in
+                if let error = error {
+                    completion(nil, error)
+                    return
+                }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(nil, NetworkError.badResponse)
+                    return
+                }
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    completion(nil, NetworkError.badStatusCode(httpResponse.statusCode))
+                    return
+                }
+                guard let localUrl = localUrl else {
+                    completion(nil, NetworkError.badData)
+                    return
+                }
+                do {
+                    let data = try Data(contentsOf: localUrl)
+                    self.imagesCache.setObject(data as NSData, forKey: imageURL as NSString)
+                    completion(data, nil)
+                } catch let error {
+                    completion(nil, error)
+                }
             }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(nil, NetworkError.badResponse)
-                return
-            }
-            guard (200...299).contains(httpResponse.statusCode) else {
-                completion(nil, NetworkError.badStatusCode(httpResponse.statusCode))
-                return
-            }
-            guard let localUrl = localUrl else {
-                completion(nil, NetworkError.badData)
-                return
-            }
-            do {
-                let data = try Data(contentsOf: localUrl)
-                completion(data, nil)
-            } catch let error {
-                completion(nil, error)
-            }
+            task.resume()
         }
-        task.resume()
     }
 }

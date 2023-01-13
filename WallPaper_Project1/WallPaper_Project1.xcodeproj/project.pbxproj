@@ -46,7 +46,11 @@
 		1A8C4A4D29694A3800063D38 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A4B29694A3800063D38 /* PersonalViewController.swift */; };
 		1A8C4A4E29694A3800063D38 /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A4C29694A3800063D38 /* PersonalViewController.xib */; };
 		1AA892F4296F9D9E00B7C668 /* GetDataFromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA892F3296F9D9E00B7C668 /* GetDataFromPlist.swift */; };
+		1AA8937C296FE46800B7C668 /* LoadCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8937A296FE46800B7C668 /* LoadCollectionReusableView.swift */; };
+		1AA8937D296FE46800B7C668 /* LoadCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8937B296FE46800B7C668 /* LoadCollectionReusableView.xib */; };
 		1AA8937F297017B000B7C668 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8937E297017B000B7C668 /* Data.plist */; };
+		1AA893832970F0F400B7C668 /* WaitingLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA893812970F0F400B7C668 /* WaitingLoadingViewController.swift */; };
+		1AA893842970F0F400B7C668 /* WaitingLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,7 +95,11 @@
 		1A8C4A4B29694A3800063D38 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		1A8C4A4C29694A3800063D38 /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
 		1AA892F3296F9D9E00B7C668 /* GetDataFromPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromPlist.swift; sourceTree = "<group>"; };
+		1AA8937A296FE46800B7C668 /* LoadCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCollectionReusableView.swift; sourceTree = "<group>"; };
+		1AA8937B296FE46800B7C668 /* LoadCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadCollectionReusableView.xib; sourceTree = "<group>"; };
 		1AA8937E297017B000B7C668 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		1AA893812970F0F400B7C668 /* WaitingLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingLoadingViewController.swift; sourceTree = "<group>"; };
+		1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingLoadingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,7 +268,6 @@
 		1A89CA742967E53800F369C9 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				1A89CA992968032100F369C9 /* Service */,
 				1A89CA762967E5AE00F369C9 /* API */,
 			);
 			path = Remote;
@@ -278,19 +285,14 @@
 		1A89CA942968025200F369C9 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				1AA893802970F0B700B7C668 /* LoadingView */,
+				1AA89371296FDE2700B7C668 /* LoadingReuseView */,
 				1A7DF3A0296F008E0013C264 /* PopUp */,
 				1A3879D7296D11640041B289 /* ReuseCell */,
 				1A3879D0296C486C0041B289 /* ImageCell */,
 				1A3879CB296C485C0041B289 /* CategoryCell */,
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		1A89CA992968032100F369C9 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		1A89CA9A2968034C00F369C9 /* Repository */ = {
@@ -385,6 +387,24 @@
 			path = PersonalScreen;
 			sourceTree = "<group>";
 		};
+		1AA89371296FDE2700B7C668 /* LoadingReuseView */ = {
+			isa = PBXGroup;
+			children = (
+				1AA8937A296FE46800B7C668 /* LoadCollectionReusableView.swift */,
+				1AA8937B296FE46800B7C668 /* LoadCollectionReusableView.xib */,
+			);
+			path = LoadingReuseView;
+			sourceTree = "<group>";
+		};
+		1AA893802970F0B700B7C668 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				1AA893812970F0F400B7C668 /* WaitingLoadingViewController.swift */,
+				1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -451,11 +471,13 @@
 				1AA8937F297017B000B7C668 /* Data.plist in Resources */,
 				1A7DF37F296E712F0013C264 /* DetailViewController.xib in Resources */,
 				1A3879D3296C486D0041B289 /* ImageCollectionViewCell.xib in Resources */,
+				1AA8937D296FE46800B7C668 /* LoadCollectionReusableView.xib in Resources */,
 				1A8C4A2729681F4C00063D38 /* Main.storyboard in Resources */,
 				1A8C4A442969484600063D38 /* AuthorViewController.xib in Resources */,
 				1A3879CF296C485C0041B289 /* CategoryCollectionViewCell.xib in Resources */,
 				1A8C4A4E29694A3800063D38 /* PersonalViewController.xib in Resources */,
 				1A8C4A492969494D00063D38 /* SearchViewController.xib in Resources */,
+				1AA893842970F0F400B7C668 /* WaitingLoadingViewController.xib in Resources */,
 				1A7DF3A4296F00B80013C264 /* PopUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +516,7 @@
 				1A7DF37D296E71230013C264 /* DetailViewController.swift in Sources */,
 				1A89CA832967F1CA00F369C9 /* ImageModel.swift in Sources */,
 				1A89CAAB2968133000F369C9 /* ImageViewController.swift in Sources */,
+				1AA893832970F0F400B7C668 /* WaitingLoadingViewController.swift in Sources */,
 				1A3879C2296BC4D80041B289 /* Others.swift in Sources */,
 				1A7DF3A3296F00B80013C264 /* PopUpViewController.swift in Sources */,
 				1A7DF398296E80C90013C264 /* ReuseCellProtocol.swift in Sources */,
@@ -510,6 +533,7 @@
 				1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */,
 				1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */,
 				1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */,
+				1AA8937C296FE46800B7C668 /* LoadCollectionReusableView.swift in Sources */,
 				1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */,
 				1A8C4A2E296827AA00063D38 /* Error.swift in Sources */,
 				1A8C4A322968288800063D38 /* Constant.swift in Sources */,
@@ -645,6 +669,7 @@
 				DEVELOPMENT_TEAM = BZD66Y59V5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WallPaper_Project1/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -674,6 +699,7 @@
 				DEVELOPMENT_TEAM = BZD66Y59V5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WallPaper_Project1/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

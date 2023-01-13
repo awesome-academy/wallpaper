@@ -11,26 +11,37 @@ struct DataRepository: APIRespository {
 
     private let apiCaller = APICaller.shared
 
-    func getImagesCurated(completion: @escaping ([Image]?, Error?) -> Void) {
-        apiCaller.getJSON(urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.curatedPhoto.rawValue)" ) {(data: Images?, error) in
+    func getImagesInNextPage(url: String, completion: @escaping (Images?, Error?) -> Void) {
+        apiCaller.getJSON(urlApi: url) {(data: Images?, error) in
             if let data = data {
-                completion(data.photos, error)
+                completion(data, error)
             }
         }
     }
 
-    func getImagesByName(name: String, completion: @escaping ([Image]?, Error?) -> Void) {
-        apiCaller.getJSON(urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.search.rawValue)\(name)" ) { (data: Images?, error) in
+    func getImagesCurated(completion: @escaping (Images?, Error?) -> Void) {
+        apiCaller.getJSON(
+            urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.curatedPhoto.rawValue)" ) {(data: Images?, error) in
             if let data = data {
-                completion(data.photos, error)
+                completion(data, error)
             }
         }
     }
 
-    func getVideosByName(name: String, completion: @escaping ([Video]?, Error?) -> Void) {
-        apiCaller.getJSON(urlApi: "\(BaseUrl.video.rawValue)\(EndpointAPI.search.rawValue)\(name)") { (data: Videos?, error) in
+    func getImagesByName(name: String, completion: @escaping (Images?, Error?) -> Void) {
+        apiCaller.getJSON(
+            urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.search.rawValue)\(name)" ) { (data: Images?, error) in
             if let data = data {
-                completion(data.videos, error)
+                completion(data, error)
+            }
+        }
+    }
+
+    func getVideosByName(name: String, completion: @escaping (Videos?, Error?) -> Void) {
+        apiCaller.getJSON(
+            urlApi: "\(BaseUrl.video.rawValue)\(EndpointAPI.search.rawValue)\(name)") { (data: Videos?, error) in
+            if let data = data {
+                completion(data, error)
             }
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 final class ImageCollectionViewCell: UICollectionViewCell, ReuseCell {
     @IBOutlet private weak var imageView: UIImageView?
     private let apiCaller = APICaller.shared
+    private var idImage: Int?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +24,7 @@ final class ImageCollectionViewCell: UICollectionViewCell, ReuseCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView?.image = nil
+        imageView?.setImageColor(color: .loadBackgroundColor)
     }
 
     private func showPopUp(notice: String) {
@@ -37,17 +38,15 @@ final class ImageCollectionViewCell: UICollectionViewCell, ReuseCell {
         self.layer.cornerRadius = 12
     }
 
-    func bindData(image: Image ) {
-        apiCaller.getImage(imageURL: image.source.portrait) { [weak self] (data, error)  in
-            guard let self = self else { return }
-            if let error = error {
-                self.showPopUp(notice: "\(error)")
-            }
-            if let data = data {
-                DispatchQueue.main.async {
-                    self.imageView?.image = UIImage(data: data)
-                }
-            }
-        }
+     func getIdImage() -> Int? {
+        return idImage
+    }
+
+    func setIdImage(id: Int ) {
+        idImage = id
+    }
+
+    func setImage(data: Data) {
+        imageView?.image = UIImage(data: data)
     }
 }

@@ -21,4 +21,11 @@ final class CategoryCollectionViewCell: UICollectionViewCell, ReuseCell {
         containerView.layer.cornerRadius = containerView.frame.size.height / 2
     }
 
+    func bindData(nameCategory: String) {
+        categoryNameLabel.text = nameCategory
+    }
+
+    func setBackgroundColor(selected: Bool) {
+        containerView.backgroundColor = selected ? .seclectedColor : .primaryColor
+    }
 }

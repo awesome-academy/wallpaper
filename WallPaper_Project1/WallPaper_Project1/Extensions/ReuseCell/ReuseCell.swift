@@ -18,7 +18,8 @@ extension ReuseCell where Self: AnyObject {
 }
 
 extension UICollectionView {
-    func register<T: UICollectionViewCell>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil) where T: ReuseCell {
+    func register<T: UICollectionViewCell>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil)
+    where T: ReuseCell {
         let identifier = T.defaultReuseIdentifier
         let nibName = T.nibName
         var bundle: Bundle?
@@ -28,11 +29,33 @@ extension UICollectionView {
         register(UINib(nibName: nibName, bundle: bundle), forCellWithReuseIdentifier: identifier)
     }
 
-    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReuseCell {
+    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T? where T: ReuseCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
-              fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
-          }
-          return cell
-      }
+            return nil
+        }
+        return cell
+    }
 
+    func registerHeaderAndFooterView<T: UICollectionReusableView>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil, isHeader: Bool)
+    where T: ReuseCell {
+        let identifier = T.defaultReuseIdentifier
+        let nibName = T.nibName
+        var bundle: Bundle?
+        if let bundleName = bundleClass {
+            bundle = Bundle(for: bundleName)
+        }
+        register(UINib(nibName: nibName, bundle: bundle),
+                 forSupplementaryViewOfKind: isHeader ? UICollectionView.elementKindSectionHeader : UICollectionView.elementKindSectionFooter,
+                 withReuseIdentifier: identifier)
+    }
+
+    func dequeueReusableSupplementaryView<T: LoadCollectionReusableView>
+    (forIndexPath indexPath: IndexPath, viewForSupplementaryElementOfKind kind: String) -> T? where T: ReuseCell {
+        guard let cell = self.dequeueReusableSupplementaryView(ofKind: kind,
+                                                               withReuseIdentifier: T.defaultReuseIdentifier,
+                                                               for: indexPath) as? T else {
+            return nil
+        }
+        return cell
+    }
 }

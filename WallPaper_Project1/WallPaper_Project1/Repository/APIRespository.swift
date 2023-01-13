@@ -9,9 +9,11 @@ import Foundation
 
 protocol APIRespository {
 
-    func getImagesByName(name: String, completion: @escaping ([Image]?, Error?) -> Void)
+    func getImagesByName(name: String, completion: @escaping (Images?, Error?) -> Void)
 
-    func getImagesCurated(completion: @escaping ([Image]?, Error?) -> Void)
+    func getImagesInNextPage(url: String, completion: @escaping (Images?, Error?) -> Void)
 
-    func getVideosByName(name: String, completion: @escaping ([Video]?, Error?) -> Void)
+    func getImagesCurated(completion: @escaping (Images?, Error?) -> Void)
+
+    func getVideosByName(name: String, completion: @escaping (Videos?, Error?) -> Void)
 }
