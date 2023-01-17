@@ -178,5 +178,4 @@ final class DetailViewController: UIViewController {
         imageIdLabel.text = "Id: \(video.id)"
         colorImageLabel.text = "Color: no"
     }
-    
 }

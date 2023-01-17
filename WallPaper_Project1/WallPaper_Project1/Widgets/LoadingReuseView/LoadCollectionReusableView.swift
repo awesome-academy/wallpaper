@@ -29,7 +29,7 @@ final class LoadCollectionReusableView: UICollectionReusableView, ReuseCell {
         }
     }
     
-    func show(frame: CGRect) {
+   func show(frame: CGRect) {
         DispatchQueue.main.async { [weak self] in
             self?.frame = frame
         }

@@ -26,6 +26,8 @@ final class TabBarViewController: UITabBarController {
     }
 
     private func configTabBarItem() {
+        tabBar.tintColor = UIColor.seclectedColor
+        tabBar.unselectedItemTintColor = .black
         if let items = tabBar.items {
             items.enumerated().forEach { (index, item) in
                 switch ItemTabBar(rawValue: index) {
@@ -55,16 +57,16 @@ final class TabBarViewController: UITabBarController {
                 item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -15, right: 0)
             }
         }
-        tabBar.itemWidth = 40.0
+        tabBar.itemWidth = 40
         tabBar.itemPositioning = .centered
     }
 
     private func drawLayerTabBar() {
         let layer = CAShapeLayer()
-        let roundRect = CGRect(x: 40, y: tabBar.bounds.minY, width: tabBar.bounds.width - 80,
+        let roundRect = CGRect(x: 50, y: tabBar.bounds.minY, width: tabBar.bounds.width - 100,
                                height: tabBar.bounds.height + 12)
         layer.path = UIBezierPath(roundedRect: roundRect, cornerRadius: (tabBar.frame.width / 2)).cgPath
-        layer.shadowColor = UIColor.white.cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
         layer.shadowRadius = 25.0
         layer.shadowOpacity = 0.5
@@ -72,7 +74,7 @@ final class TabBarViewController: UITabBarController {
         layer.opacity = 1.0
         layer.isHidden = false
         layer.masksToBounds = false
-        layer.fillColor = UIColor.white.cgColor
+        layer.fillColor = UIColor(#colorLiteral(red: 0.9336340427, green: 0.9336340427, blue: 0.9336340427, alpha: 1)).cgColor
         tabBar.layer.insertSublayer(layer, at: 0)
     }
 

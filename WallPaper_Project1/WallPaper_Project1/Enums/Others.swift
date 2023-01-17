@@ -18,7 +18,7 @@ enum ItemTabBar: Int {
         case .photoScreen:
             return "Photo"
         case .livePhotoScreen:
-            return "Live Photo"
+            return "Video"
         case .searchScreen:
             return "Search"
         case .personalScreen:
@@ -28,19 +28,29 @@ enum ItemTabBar: Int {
     func getIconName() -> String {
         switch self {
         case .photoScreen:
-            return "photo.on.rectangle.angled"
+            return "photo.circle.fill"
         case .livePhotoScreen:
-            return "livephoto"
+            return "video.circle.fill"
         case .searchScreen:
-            return "magnifyingglass"
+            return "magnifyingglass.circle.fill"
         case .personalScreen:
-            return "person.fill"
+            return "person.circle.fill"
         }
     }
 }
 
-enum Category: String {
+enum CategoryPhoto: String {
     case curated = "Currated"
+    case nature = "Nature"
+    case sea = "Sea"
+    case sky = "Sky"
+    case animal = "Animal"
+    case car = "Car"
+    case robot = "Robot"
+}
+
+enum CategoryVideo: String {
+    case popular = "Popular"
     case nature = "Nature"
     case sea = "Sea"
     case sky = "Sky"
