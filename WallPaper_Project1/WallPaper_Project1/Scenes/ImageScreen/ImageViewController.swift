@@ -47,21 +47,21 @@ final class ImageViewController: UIViewController {
     }
 
     private func switchCategory(category: String) {
-        switch Category(rawValue: category) {
+        switch CategoryPhoto(rawValue: category) {
         case .animal:
-            getImagesByName(name: Category.animal.rawValue)
+            getImagesByName(name: CategoryPhoto.animal.rawValue)
         case .car:
-            getImagesByName(name: Category.car.rawValue)
+            getImagesByName(name: CategoryPhoto.car.rawValue)
         case .curated:
             getImageCurated()
         case .nature:
-            getImagesByName(name: Category.nature.rawValue)
+            getImagesByName(name: CategoryPhoto.nature.rawValue)
         case .robot:
-            getImagesByName(name: Category.robot.rawValue)
+            getImagesByName(name: CategoryPhoto.robot.rawValue)
         case .sea:
-            getImagesByName(name: Category.sea.rawValue)
+            getImagesByName(name: CategoryPhoto.sea.rawValue)
         case .sky:
-            getImagesByName(name: Category.sky.rawValue)
+            getImagesByName(name: CategoryPhoto.sky.rawValue)
         default:
             break
         }
@@ -198,7 +198,6 @@ extension ImageViewController: UICollectionViewDelegate {
         if imageCollectionView == collectionView {
             let detailScreen = DetailViewController(nibName: "DetailViewController", bundle: nil)
             detailScreen.modalPresentationStyle = .fullScreen
-            let backgroundColor = UIColor(hexString: images[indexPath.row].avgColor, alpha: 0.5)
             detailScreen.bindDataImage(image: images[indexPath.row])
             present(detailScreen, animated: true, completion: nil)
         } else {
@@ -220,8 +219,8 @@ extension ImageViewController: UICollectionViewDelegate {
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-           guard let header = collectionView.dequeueReusableSupplementaryView(forIndexPath: indexPath,
-                                                                              viewForSupplementaryElementOfKind: kind) else {
+           guard let header = collectionView.dequeueReusableSupplementaryView(
+            forIndexPath: indexPath, viewForSupplementaryElementOfKind: kind) else {
                showPopUp(notice: "Could not dequeue cell with identifier ")
                return UICollectionReusableView()
            }
@@ -229,8 +228,8 @@ extension ImageViewController: UICollectionViewDelegate {
             header.hide()
             return header
         case UICollectionView.elementKindSectionFooter:
-            guard let footer = collectionView.dequeueReusableSupplementaryView(forIndexPath: indexPath,
-                                                                               viewForSupplementaryElementOfKind: kind) else {
+            guard let footer = collectionView.dequeueReusableSupplementaryView(
+                forIndexPath: indexPath, viewForSupplementaryElementOfKind: kind) else {
                 showPopUp(notice: "Could not dequeue cell with identifier ")
                 return UICollectionReusableView()
             }

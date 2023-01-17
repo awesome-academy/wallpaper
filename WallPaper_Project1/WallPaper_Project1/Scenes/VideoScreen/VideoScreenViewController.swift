@@ -20,6 +20,7 @@ final class VideoScreenViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var isLoadMore = false
     private var loadingBottomView: LoadCollectionReusableView?
+    private let categories = ["Popular", "Nature", "Sea", "Sky", "Animal", "Car", "Robot"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,27 @@ final class VideoScreenViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.refreshControl.endRefreshing()
             self?.videoCollectionView.reloadData()
+        }
+    }
+
+    private func switchCategory(category: String) {
+        switch CategoryVideo(rawValue: category) {
+        case .animal:
+            getVideoByName(name: CategoryPhoto.animal.rawValue)
+        case .car:
+            getVideoByName(name: CategoryPhoto.car.rawValue)
+        case .popular:
+            getVideosPopular()
+        case .nature:
+            getVideoByName(name: CategoryPhoto.nature.rawValue)
+        case .robot:
+            getVideoByName(name: CategoryPhoto.robot.rawValue)
+        case .sea:
+            getVideoByName(name: CategoryPhoto.sea.rawValue)
+        case .sky:
+            getVideoByName(name: CategoryPhoto.sky.rawValue)
+        default:
+            break
         }
     }
 
@@ -127,7 +149,7 @@ final class VideoScreenViewController: UIViewController {
 
 extension VideoScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == categoryCollectionView ? 12 : videos.count
+        return collectionView == categoryCollectionView ? categories.count : videos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,6 +159,8 @@ extension VideoScreenViewController: UICollectionViewDataSource {
                 showPopUp(notice: "Could not dequeue cell with identifier ")
                 return UICollectionViewCell()
             }
+            cell.setBackgroundColor(selected: indexCategorySelected == indexPath.row)
+            cell.bindData(nameCategory: categories[indexPath.row])
             return cell
         } else {
             guard let cell: VideoCollectionViewCell =
@@ -173,6 +197,7 @@ extension VideoScreenViewController: UICollectionViewDelegate {
             present(detailScreen, animated: true, completion: nil)
         } else {
             indexCategorySelected = indexPath.row
+            switchCategory(category: categories[indexPath.row])
             categoryCollectionView.reloadData()
         }
     }
