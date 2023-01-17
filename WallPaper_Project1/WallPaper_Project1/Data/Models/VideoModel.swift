@@ -34,7 +34,7 @@ struct Video: Codable {
     let image: String
     let avgColor: String?
     let user: User
-    let videoFiles: [DetailVideo]?
+    let videoFiles: [DetailVideo]
     let videoPictures: [Picture]
 
     enum CodingKeys: String, CodingKey {

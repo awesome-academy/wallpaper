@@ -9,7 +9,7 @@ import UIKit
 
 final class PopUpViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var noticeLabel: UILabel!
+    @IBOutlet private weak var noticeLabel: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()

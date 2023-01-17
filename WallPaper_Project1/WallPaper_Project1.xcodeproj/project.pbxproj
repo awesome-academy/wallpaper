@@ -38,7 +38,6 @@
 		1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3329692A2200063D38 /* DataRepository.swift */; };
 		1A8C4A382969389F00063D38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A372969389F00063D38 /* TabBarViewController.swift */; };
 		1A8C4A3C29693AD100063D38 /* VideoScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3A29693AD100063D38 /* VideoScreenViewController.swift */; };
-		1A8C4A3D29693AD100063D38 /* VideoScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A3B29693AD100063D38 /* VideoScreenViewController.xib */; };
 		1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A412969484600063D38 /* AuthorViewController.swift */; };
 		1A8C4A442969484600063D38 /* AuthorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C4A422969484600063D38 /* AuthorViewController.xib */; };
 		1A8C4A482969494D00063D38 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C4A462969494D00063D38 /* SearchViewController.swift */; };
@@ -51,6 +50,9 @@
 		1AA8937F297017B000B7C668 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8937E297017B000B7C668 /* Data.plist */; };
 		1AA893832970F0F400B7C668 /* WaitingLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA893812970F0F400B7C668 /* WaitingLoadingViewController.swift */; };
 		1AA893842970F0F400B7C668 /* WaitingLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */; };
+		1AA8938829718DEE00B7C668 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8938629718DEE00B7C668 /* VideoCollectionViewCell.swift */; };
+		1AA8938929718DEE00B7C668 /* VideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8938729718DEE00B7C668 /* VideoCollectionViewCell.xib */; };
+		1AA8938B2971ADAA00B7C668 /* VideoScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8938A2971ADAA00B7C668 /* VideoScreenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +89,6 @@
 		1A8C4A3329692A2200063D38 /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		1A8C4A372969389F00063D38 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1A8C4A3A29693AD100063D38 /* VideoScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScreenViewController.swift; sourceTree = "<group>"; };
-		1A8C4A3B29693AD100063D38 /* VideoScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoScreenViewController.xib; sourceTree = "<group>"; };
 		1A8C4A412969484600063D38 /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		1A8C4A422969484600063D38 /* AuthorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorViewController.xib; sourceTree = "<group>"; };
 		1A8C4A462969494D00063D38 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +101,9 @@
 		1AA8937E297017B000B7C668 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		1AA893812970F0F400B7C668 /* WaitingLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingLoadingViewController.swift; sourceTree = "<group>"; };
 		1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingLoadingViewController.xib; sourceTree = "<group>"; };
+		1AA8938629718DEE00B7C668 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		1AA8938729718DEE00B7C668 /* VideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCollectionViewCell.xib; sourceTree = "<group>"; };
+		1AA8938A2971ADAA00B7C668 /* VideoScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoScreenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +289,7 @@
 		1A89CA942968025200F369C9 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				1AA8938529718DC100B7C668 /* VideoCell */,
 				1AA893802970F0B700B7C668 /* LoadingView */,
 				1AA89371296FDE2700B7C668 /* LoadingReuseView */,
 				1A7DF3A0296F008E0013C264 /* PopUp */,
@@ -355,7 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				1A8C4A3A29693AD100063D38 /* VideoScreenViewController.swift */,
-				1A8C4A3B29693AD100063D38 /* VideoScreenViewController.xib */,
+				1AA8938A2971ADAA00B7C668 /* VideoScreenViewController.xib */,
 			);
 			path = VideoScreen;
 			sourceTree = "<group>";
@@ -403,6 +408,15 @@
 				1AA893822970F0F400B7C668 /* WaitingLoadingViewController.xib */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		1AA8938529718DC100B7C668 /* VideoCell */ = {
+			isa = PBXGroup;
+			children = (
+				1AA8938629718DEE00B7C668 /* VideoCollectionViewCell.swift */,
+				1AA8938729718DEE00B7C668 /* VideoCollectionViewCell.xib */,
+			);
+			path = VideoCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,7 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3879D6296C49200041B289 /* ImageViewController.xib in Resources */,
-				1A8C4A3D29693AD100063D38 /* VideoScreenViewController.xib in Resources */,
+				1AA8938B2971ADAA00B7C668 /* VideoScreenViewController.xib in Resources */,
 				1A89CAB12968137800F369C9 /* Launch Screen.storyboard in Resources */,
 				1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */,
 				1AA8937F297017B000B7C668 /* Data.plist in Resources */,
@@ -474,6 +488,7 @@
 				1AA8937D296FE46800B7C668 /* LoadCollectionReusableView.xib in Resources */,
 				1A8C4A2729681F4C00063D38 /* Main.storyboard in Resources */,
 				1A8C4A442969484600063D38 /* AuthorViewController.xib in Resources */,
+				1AA8938929718DEE00B7C668 /* VideoCollectionViewCell.xib in Resources */,
 				1A3879CF296C485C0041B289 /* CategoryCollectionViewCell.xib in Resources */,
 				1A8C4A4E29694A3800063D38 /* PersonalViewController.xib in Resources */,
 				1A8C4A492969494D00063D38 /* SearchViewController.xib in Resources */,
@@ -528,6 +543,7 @@
 				1A8C4A4D29694A3800063D38 /* PersonalViewController.swift in Sources */,
 				1A8C4A30296827F100063D38 /* MethodReqest.swift in Sources */,
 				1A8C4A292968262A00063D38 /* APIRespository.swift in Sources */,
+				1AA8938829718DEE00B7C668 /* VideoCollectionViewCell.swift in Sources */,
 				1A3879CE296C485C0041B289 /* CategoryCollectionViewCell.swift in Sources */,
 				1A7DF39F296EBA350013C264 /* HexColor.swift in Sources */,
 				1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */,

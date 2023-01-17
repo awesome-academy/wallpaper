@@ -8,7 +8,7 @@
 import Foundation
 enum BaseUrl: String {
     case photo = "https://api.pexels.com/v1/"
-    case video = "https://api.pexels.com/videos"
+    case video = "https://api.pexels.com/videos/"
 }
 
 enum EndpointAPI: String {

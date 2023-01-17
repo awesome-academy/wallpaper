@@ -38,8 +38,8 @@ final class ImageCollectionViewCell: UICollectionViewCell, ReuseCell {
         self.layer.cornerRadius = 12
     }
 
-     func getIdImage() -> Int? {
-        return idImage
+    func getIdImage() -> Int? {
+    return idImage
     }
 
     func setIdImage(id: Int ) {

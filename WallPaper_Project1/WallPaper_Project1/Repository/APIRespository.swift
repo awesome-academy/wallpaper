@@ -16,4 +16,9 @@ protocol APIRespository {
     func getImagesCurated(completion: @escaping (Images?, Error?) -> Void)
 
     func getVideosByName(name: String, completion: @escaping (Videos?, Error?) -> Void)
+
+    func getVideosPopular(completion: @escaping (Videos?, Error?) -> Void)
+
+    func getVideosNextPage(nextUrl: String, completion: @escaping (Videos?, Error?) -> Void)
+
 }

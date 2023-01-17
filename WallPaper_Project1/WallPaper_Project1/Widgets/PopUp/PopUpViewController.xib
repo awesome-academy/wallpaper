@@ -90,6 +90,10 @@
                 <constraint firstItem="QlT-9F-NUn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8d2-3O-ZuO"/>
                 <constraint firstItem="QlT-9F-NUn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fd9-Wh-Dgx"/>
                 <constraint firstItem="vix-MR-Pta" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I2P-mG-nGZ"/>
+                <constraint firstAttribute="trailing" secondItem="QlT-9F-NUn" secondAttribute="trailing" id="QoC-aY-zR0"/>
+                <constraint firstItem="QlT-9F-NUn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Une-7b-gzB"/>
+                <constraint firstItem="QlT-9F-NUn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vt8-V7-lg2"/>
+                <constraint firstAttribute="bottom" secondItem="QlT-9F-NUn" secondAttribute="bottom" id="YH7-km-EAV"/>
                 <constraint firstItem="QlT-9F-NUn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bHB-HA-z7m"/>
                 <constraint firstItem="vix-MR-Pta" firstAttribute="centerX" secondItem="QlT-9F-NUn" secondAttribute="centerX" id="o0M-DK-cxz"/>
                 <constraint firstItem="vix-MR-Pta" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="287" id="qDR-ny-FMD"/>

@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
+import Photos
 
 final class DetailViewController: UIViewController {
     @IBOutlet private weak var downloadButton: UIButton!
+    @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var detailImageView: UIImageView!
     @IBOutlet private weak var arrowTriangleImageView: UIImageView!
     @IBOutlet private weak var authorNameLabel: UILabel!
@@ -22,6 +25,12 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var widthImageLabel: UILabel!
     private let apiCaller = APICaller.shared
     private var imageData: Data?
+    private var player: AVPlayer?
+    private let playerLayer = AVPlayerLayer()
+    private var videoDuration: Int = 1
+    private var video: Video?
+    private var isVideo = false
+    private var videoUrl = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +42,59 @@ final class DetailViewController: UIViewController {
         arrowTriangleImageView.isHidden = true
         downloadButton.layer.cornerRadius = 20
         informationView.layer.cornerRadius = 12
+        detailImageView.setImageColor(color: .loadBackgroundColor)
         bottomButtonViewContainer.setGradientBackground(colorTop: UIColor.clear.cgColor,
                                                         colorBottom: UIColor.black.cgColor)
         topButtonViewContainer.setGradientBackground(colorTop: UIColor.black.cgColor,
                                                      colorBottom: UIColor.clear.cgColor)
     }
 
+    @objc private func longPressCell(_ gesture: UIGestureRecognizer) {
+        if gesture.state == UIGestureRecognizer.State.began {
+            if Int( player!.currentTime().seconds) >= (videoDuration) - 1 {
+                player?.seek(to: CMTime.zero)
+            }
+            player?.play()
+        }
+        if gesture.state == UIGestureRecognizer.State.ended {
+            player?.pause()
+        }
+    }
+
     @IBAction private func downloadButtonTapped(_ sender: Any) {
-        let waitingLoadingViewController = WaitingLoadingViewController(nibName: "WaitingLoadingViewController",
-                                        bundle: nil)
+        let waitingLoadingViewController = WaitingLoadingViewController(nibName: "WaitingLoadingViewController", bundle: nil)
         waitingLoadingViewController.updateView(status: true)
-        waitingLoadingViewController.modalPresentationStyle = .fullScreen
-       present(waitingLoadingViewController, animated: true)
-        if let imageData = imageData {
-            if let imageDownload = UIImage(data: imageData) {
-                DispatchQueue.global().async {
-                    UIImageWriteToSavedPhotosAlbum(imageDownload, nil, nil, nil)
+        present(waitingLoadingViewController, animated: true)
+        if isVideo {
+            guard let url = URL(string: videoUrl) else {
+                return
+            }
+            DispatchQueue.global().async { [weak self] in
+                let urlData = NSData(contentsOf: url)
+                let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                let filePath = "\(documentsPath)/tempFile.mp4"
+                DispatchQueue.main.async {
+                    urlData?.write(toFile: filePath, atomically: true)
+                    PHPhotoLibrary.shared().performChanges({
+                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(fileURLWithPath: filePath))
+                    }) { (completed, error) in
+                        if let error = error {
+                            self?.showPopUp(notice: "\(error)")
+                        }
+                        if completed {
+                            waitingLoadingViewController.updateView(status: false)
+                        }
+                    }
                 }
-                waitingLoadingViewController.updateView(status: false)
+            }
+        } else {
+            if let imageData = imageData {
+                if let imageDownload = UIImage(data: imageData) {
+                    DispatchQueue.global().async {
+                        UIImageWriteToSavedPhotosAlbum(imageDownload, nil, nil, nil)
+                    }
+                    waitingLoadingViewController.updateView(status: false)
+                }
             }
         }
     }
@@ -64,13 +108,6 @@ final class DetailViewController: UIViewController {
         self.dismiss(animated: true)
     }
 
-    func setLoadBackGroundColor(color: UIColor) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.detailImageView?.setImageColor(color: color)
-        }
-    }
-
     private func showPopUp(notice: String) {
         let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
         popUpView.bindData(notice: notice)
@@ -78,7 +115,8 @@ final class DetailViewController: UIViewController {
         view.addSubview(popUpView.view)
     }
 
-    func bindData(image: Image ) {
+    func bindDataImage(image: Image ) {
+        isVideo = false
         apiCaller.getImage(imageURL: image.source.portrait) { [weak self] (data, error)  in
             guard let self = self else { return }
             if let error = error {
@@ -93,15 +131,52 @@ final class DetailViewController: UIViewController {
         }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.updateView(image: image)
+            self.updateImageView(image: image)
         }
     }
 
-    private func updateView(image: Image) {
+    private func updateImageView(image: Image) {
         authorNameLabel.text = image.photographer
         heightImageLabel.text = "Height: \(image.height)"
         widthImageLabel.text = "Width: \(image.width)"
         imageIdLabel.text = "Id: \(image.id)"
         colorImageLabel.text = "Color: \(image.avgColor)"
     }
+
+    func bindDataVideo(video: Video) {
+        isVideo = true
+        videoUrl = video.videoFiles[0].link
+        apiCaller.getVideo(videoURL: videoUrl) { [weak self] (player, error) in
+            guard let self = self else { return }
+            if let error = error {
+                self.showPopUp(notice: "\(error)")
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.player = player
+                self.updateVideoView()
+                self.updateInformationVideo(video: video)
+            }
+        }
+    }
+
+    private func updateVideoView() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressCell(_:)))
+        imageContainerView.addGestureRecognizer(longPressGesture)
+        playerLayer.player = player
+        playerLayer.frame = view.bounds
+        playerLayer.videoGravity = .resizeAspectFill
+        imageContainerView.layer.addSublayer(playerLayer)
+        player?.volume = 0
+    }
+
+    private func updateInformationVideo(video: Video) {
+        detailImageView.isHidden = true
+        authorNameLabel.text = video.user.name
+        heightImageLabel.text = "Height: \(video.videoFiles[0].height)"
+        widthImageLabel.text = "Width: \(video.videoFiles[0].width)"
+        imageIdLabel.text = "Id: \(video.id)"
+        colorImageLabel.text = "Color: no"
+    }
+    
 }
