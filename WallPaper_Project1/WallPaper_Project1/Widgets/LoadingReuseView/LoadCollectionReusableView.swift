@@ -24,14 +24,14 @@ final class LoadCollectionReusableView: UICollectionReusableView, ReuseCell {
     }
 
     func hide() {
-        DispatchQueue.main.async {
-            self.frame = CGRect.null
+        DispatchQueue.main.async { [weak self] in
+            self?.frame = CGRect.null
         }
     }
-
+    
     func show(frame: CGRect) {
-        DispatchQueue.main.async {
-            self.frame = frame
+        DispatchQueue.main.async { [weak self] in
+            self?.frame = frame
         }
     }
 }

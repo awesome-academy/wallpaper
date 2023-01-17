@@ -45,4 +45,22 @@ struct DataRepository: APIRespository {
             }
         }
     }
+
+    func getVideosPopular(completion: @escaping (Videos?, Error?) -> Void) {
+        apiCaller.getJSON(
+            urlApi: "\(BaseUrl.video.rawValue)\(EndpointAPI.popularVideo.rawValue)") { (data: Videos?, error) in
+            if let data = data {
+                completion(data, error)
+            }
+        }
+    }
+
+    func getVideosNextPage(nextUrl: String, completion: @escaping (Videos?, Error?) -> Void) {
+        apiCaller.getJSON(urlApi: nextUrl) { (data: Videos?, error) in
+            if let data = data {
+                completion(data, error)
+            }
+        }
+    }
+
 }

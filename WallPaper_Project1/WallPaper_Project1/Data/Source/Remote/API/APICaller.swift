@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import AVFoundation
 
 class APICaller {
     static let shared = APICaller()
     private let session: URLSession
     private var imagesCache = NSCache<NSString, NSData>()
+    private var videosCache = NSCache<NSString, AVPlayer>()
 
     private init() {
         let config = URLSessionConfiguration.default
@@ -94,6 +96,22 @@ class APICaller {
                 }
             }
             task.resume()
+        }
+    }
+
+    func getVideo(videoURL: String, completion: @escaping (AVPlayer?, Error?) -> Void) {
+        if let videoData = videosCache.object(forKey: videoURL as NSString) {
+            completion(videoData as AVPlayer, nil)
+            return
+        }
+        guard let url = URL(string: videoURL) else {
+            completion(nil, NetworkError.badData)
+            return
+        }
+        DispatchQueue.global().sync { [weak self] in
+            let player = AVPlayer(url: url)
+            self?.videosCache.setObject(player as AVPlayer, forKey: videoURL as NSString)
+            completion(player as AVPlayer, nil)
         }
     }
 }

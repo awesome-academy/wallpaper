@@ -199,8 +199,7 @@ extension ImageViewController: UICollectionViewDelegate {
             let detailScreen = DetailViewController(nibName: "DetailViewController", bundle: nil)
             detailScreen.modalPresentationStyle = .fullScreen
             let backgroundColor = UIColor(hexString: images[indexPath.row].avgColor, alpha: 0.5)
-            detailScreen.setLoadBackGroundColor(color: backgroundColor)
-            detailScreen.bindData(image: images[indexPath.row])
+            detailScreen.bindDataImage(image: images[indexPath.row])
             present(detailScreen, animated: true, completion: nil)
         } else {
             indexCategorySelected = indexPath.row
