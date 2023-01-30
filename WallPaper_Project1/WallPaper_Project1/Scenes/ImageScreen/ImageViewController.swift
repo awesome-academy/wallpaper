@@ -31,18 +31,8 @@ final class ImageViewController: UIViewController {
     }
 
     private func getImageCurated() {
-        dataRepository.getImagesCurated() { [weak self] (data, error) in
-            guard let self = self else { return }
-            if let error = error {
-                self.showPopUp(notice: "\(error)")
-            }
-            if let data = data {
-                self.urlNextPage = data.nextPage
-                self.images = data.photos ?? []
-                DispatchQueue.main.async {
-                    self.imageCollectionView.reloadData()
-                }
-            }
+        dataRepository.getImagesCurated() { [unowned self] (data, error) in
+            getImageData(data: data, error: error)
         }
     }
 
@@ -68,35 +58,28 @@ final class ImageViewController: UIViewController {
     }
 
     private func getImagesByName(name: String) {
-        dataRepository.getImagesByName(name: name) { [weak self] (data, error) in
-            guard let self = self else { return }
-            if let error = error {
-                self.showPopUp(notice: "\(error)")
-            }
-            if let data = data {
-                self.urlNextPage = data.nextPage
-                self.images = data.photos ?? []
-                DispatchQueue.main.async {
-                    self.imageCollectionView.reloadData()
-                }
-            }
+        dataRepository.getImagesByName(name: name) { [unowned self] (data, error) in
+            getImageData(data: data, error: error)
         }
     }
 
     private func getImagesNextPage(url: String) {
-        dataRepository.getImagesInNextPage(url: url) { [weak self] (data, error) in
-            guard let self = self else { return }
-            if let error = error {
-                self.showPopUp(notice: "\(error)")
-            }
-            if let data = data {
-                self.images.append(contentsOf: data.photos ?? [])
-                self.urlNextPage = data.nextPage
-                DispatchQueue.main.async {
-                    self.imageCollectionView.reloadData()
-                }
-                self.isLoadMore = false
-                self.loadingBottomView?.hide()
+        dataRepository.getImagesInNextPage(url: url) { [unowned self] (data, error) in
+            getImageData(data: data, error: error)
+            isLoadMore = false
+            loadingBottomView?.hide()
+        }
+    }
+
+    private func getImageData(data: Images?, error: Error?) {
+        if let error = error {
+            showPopUp(notice: "\(error)")
+        }
+        if let data = data {
+            images.append(contentsOf: data.photos ?? [])
+            urlNextPage = data.nextPage ?? ""
+            DispatchQueue.main.async { [weak self] in
+                self?.imageCollectionView.reloadData()
             }
         }
     }
@@ -219,11 +202,11 @@ extension ImageViewController: UICollectionViewDelegate {
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-           guard let header = collectionView.dequeueReusableSupplementaryView(
-            forIndexPath: indexPath, viewForSupplementaryElementOfKind: kind) else {
-               showPopUp(notice: "Could not dequeue cell with identifier ")
-               return UICollectionReusableView()
-           }
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                forIndexPath: indexPath, viewForSupplementaryElementOfKind: kind) else {
+                showPopUp(notice: "Could not dequeue cell with identifier ")
+                return UICollectionReusableView()
+            }
             header.backgroundColor = .blue
             header.hide()
             return header

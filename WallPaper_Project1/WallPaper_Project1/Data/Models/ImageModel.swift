@@ -51,7 +51,7 @@ struct Images: Codable {
     let perPage: Int
     let photos: [Image]?
     let totalResults: Int
-    let nextPage: String
+    let nextPage: String?
     enum CodingKeys: String, CodingKey {
         case page = "page"
         case perPage = "per_page"

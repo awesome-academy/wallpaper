@@ -10,10 +10,10 @@ import Foundation
 struct Videos: Codable {
     let page: Int
     let perPage: Int
-    let totalResults: Int
+    let totalResults: Int?
     let url: String
     let videos: [Video]?
-    let nextPage: String
+    let nextPage: String?
 
     enum CodingKeys: String, CodingKey {
         case page = "page"

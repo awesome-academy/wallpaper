@@ -12,7 +12,6 @@ final class TabBarViewController: UITabBarController {
     let videoScreenViewController = VideoScreenViewController()
     let searchViewController = SearchViewController()
     let personalViewController = PersonalViewController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()

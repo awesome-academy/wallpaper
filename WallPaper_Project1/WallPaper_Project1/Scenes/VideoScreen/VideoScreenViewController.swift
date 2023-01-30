@@ -95,7 +95,7 @@ final class VideoScreenViewController: UIViewController {
                 self.showPopUp(notice: "\(error)")
             }
             if let data = data {
-                self.urlNextPage = data.nextPage
+                self.urlNextPage = data.nextPage ?? ""
                 self.videos = data.videos ?? []
                 DispatchQueue.main.async {
                     self.videoCollectionView.reloadData()
@@ -111,7 +111,7 @@ final class VideoScreenViewController: UIViewController {
                 self.showPopUp(notice: "\(error)")
             }
             if let data = data {
-                self.urlNextPage = data.nextPage
+                self.urlNextPage = data.nextPage ?? ""
                 self.videos = data.videos ?? []
                 DispatchQueue.main.async {
                     self.videoCollectionView.reloadData()
@@ -128,7 +128,7 @@ final class VideoScreenViewController: UIViewController {
             }
             if let data = data {
                 self.videos.append(contentsOf: data.videos ?? [])
-                self.urlNextPage = data.nextPage
+                self.urlNextPage = data.nextPage ?? ""
                 DispatchQueue.main.async {
                     self.videoCollectionView.reloadData()
                 }
@@ -170,8 +170,9 @@ extension VideoScreenViewController: UICollectionViewDataSource {
             }
             let idVideo = videos[indexPath.row].id
             cell.setVideo(video: videos[indexPath.row])
-            let url = videos[indexPath.row].videoFiles[2].link
-            apiCaller.getVideo(videoURL: url) { [weak self] (player, error) in
+            // videoFiles has 4 video quality ( 2 sd and 2 hd)
+            let url = videos[indexPath.row].videoFiles.first?.link
+            apiCaller.getVideo(videoURL: url ?? "") { [weak self] (player, error) in
                 guard let self = self else { return }
                 if let error = error {
                     self.showPopUp(notice: "\(error)")
