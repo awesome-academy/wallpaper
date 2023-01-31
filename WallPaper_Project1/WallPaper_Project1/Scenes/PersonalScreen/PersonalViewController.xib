@@ -14,6 +14,8 @@
                 <outlet property="collectionView" destination="dMU-Az-qMv" id="3l2-zF-77h"/>
                 <outlet property="downloadButton" destination="81g-r7-fy4" id="it3-fP-MOP"/>
                 <outlet property="favoriteButton" destination="onq-tz-GC0" id="kHC-fq-B7K"/>
+                <outlet property="numberDownloadLabel" destination="kh5-Nz-xvc" id="w8Q-mR-8xv"/>
+                <outlet property="numberFavoriteLabel" destination="HQe-Pj-IfQ" id="nss-EW-Nol"/>
                 <outlet property="view" destination="yLS-01-HxX" id="wGf-D5-tmd"/>
             </connections>
         </placeholder>
@@ -69,7 +71,6 @@
                             <rect key="frame" x="32" y="56" width="120" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Esf-IM-uD0"/>
-                                <constraint firstAttribute="width" constant="120" id="KtL-Ba-Axz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,7 +80,6 @@
                             <rect key="frame" x="242" y="56" width="120" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="120" id="Lnk-I2-pDm"/>
                                 <constraint firstAttribute="height" constant="30" id="aVh-Cz-uBu"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
@@ -97,10 +97,11 @@
                         <constraint firstItem="onq-tz-GC0" firstAttribute="top" secondItem="nOJ-Zg-gEo" secondAttribute="topMargin" id="eX4-hK-s3v"/>
                         <constraint firstAttribute="trailing" secondItem="onq-tz-GC0" secondAttribute="trailing" constant="32" id="jdE-5q-Qwd"/>
                         <constraint firstAttribute="bottom" secondItem="kh5-Nz-xvc" secondAttribute="bottom" constant="24" id="k9D-z5-5SZ"/>
-                        <constraint firstItem="onq-tz-GC0" firstAttribute="top" secondItem="81g-r7-fy4" secondAttribute="top" id="koi-Lg-oxD"/>
+                        <constraint firstItem="onq-tz-GC0" firstAttribute="top" secondItem="81g-r7-fy4" secondAttribute="top" id="koi-Lg-oxD"/>                        <constraint firstItem="HQe-Pj-IfQ" firstAttribute="centerX" secondItem="onq-tz-GC0" secondAttribute="centerX" id="l0X-e4-aup"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="mn8-Jp-Y6G"/>
                         <constraint firstAttribute="height" constant="110" id="s7S-ZY-HEI"/>
                         <constraint firstItem="onq-tz-GC0" firstAttribute="firstBaseline" secondItem="81g-r7-fy4" secondAttribute="firstBaseline" id="ytq-tF-mYh"/>
+                        <constraint firstItem="kh5-Nz-xvc" firstAttribute="centerX" secondItem="81g-r7-fy4" secondAttribute="centerX" id="zpQ-o5-BHd"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dMU-Az-qMv">

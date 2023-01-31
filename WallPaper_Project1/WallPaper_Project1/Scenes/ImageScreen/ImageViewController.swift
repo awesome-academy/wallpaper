@@ -89,7 +89,6 @@ final class ImageViewController: UIViewController {
         imageCollectionView.refreshControl = refreshControl
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-
     }
 
     @objc private func refreshData(_ sender: Any) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImageCollectionViewCell: UICollectionViewCell, ReuseCell {
+final class ImageCollectionViewCell: UICollectionViewCell, ReuseCellType {
     @IBOutlet private weak var imageView: UIImageView?
     private let apiCaller = APICaller.shared
     private var idImage: Int?

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ReuseCell where Self: AnyObject {
+extension ReuseCellType where Self: AnyObject {
     static var defaultReuseIdentifier: String {
         return String(describing: self)
     }
@@ -19,7 +19,7 @@ extension ReuseCell where Self: AnyObject {
 
 extension UICollectionView {
     func register<T: UICollectionViewCell>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil)
-    where T: ReuseCell {
+    where T: ReuseCellType {
         let identifier = T.defaultReuseIdentifier
         let nibName = T.nibName
         var bundle: Bundle?
@@ -29,7 +29,7 @@ extension UICollectionView {
         register(UINib(nibName: nibName, bundle: bundle), forCellWithReuseIdentifier: identifier)
     }
 
-    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T? where T: ReuseCell {
+    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T? where T: ReuseCellType {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
             return nil
         }
@@ -37,7 +37,7 @@ extension UICollectionView {
     }
 
     func registerHeaderAndFooterView<T: UICollectionReusableView>(nibName name: T.Type, atBundle bundleClass: AnyClass? = nil, isHeader: Bool)
-    where T: ReuseCell {
+    where T: ReuseCellType {
         let identifier = T.defaultReuseIdentifier
         let nibName = T.nibName
         var bundle: Bundle?
@@ -50,7 +50,7 @@ extension UICollectionView {
     }
 
     func dequeueReusableSupplementaryView<T: LoadCollectionReusableView>
-    (forIndexPath indexPath: IndexPath, viewForSupplementaryElementOfKind kind: String) -> T? where T: ReuseCell {
+    (forIndexPath indexPath: IndexPath, viewForSupplementaryElementOfKind kind: String) -> T? where T: ReuseCellType {
         guard let cell = self.dequeueReusableSupplementaryView(ofKind: kind,
                                                                withReuseIdentifier: T.defaultReuseIdentifier,
                                                                for: indexPath) as? T else {

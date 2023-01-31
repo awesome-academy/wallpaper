@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DataRepository: APIRespository {
+struct DataRepository: APIRespositoryType {
 
     private let apiCaller = APICaller.shared
 

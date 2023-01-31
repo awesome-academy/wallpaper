@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class VideoCollectionViewCell: UICollectionViewCell, ReuseCell {
+class VideoCollectionViewCell: UICollectionViewCell, ReuseCellType {
     private var player: AVPlayer?
     private let layerPlayer = AVPlayerLayer()
     private var idVideo: Int?
@@ -60,6 +60,11 @@ class VideoCollectionViewCell: UICollectionViewCell, ReuseCell {
     func setVideo(video: Video) {
         idVideo = video.id
         videoDuration = video.duration
+    }
+
+    func setInformationFromCoreData(data: CoreDataObject) {
+        idVideo = data.id
+        videoDuration = data.videoDuration ?? 0
     }
     
     func getIdVideo() -> Int? {

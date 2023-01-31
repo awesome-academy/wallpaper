@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LoadCollectionReusableView: UICollectionReusableView, ReuseCell {
+final class LoadCollectionReusableView: UICollectionReusableView, ReuseCellType {
 
     @IBOutlet private weak var loadViewIndicator: UIActivityIndicatorView!
 
