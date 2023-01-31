@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpViewController" customModule="WallPaper_Project1" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="vix-MR-Pta" id="mJV-bN-5Je"/>
-                <outlet property="noticeLabel" destination="8K2-wf-ZRt" id="wXK-Bu-QQV"/>
+                <outlet property="noticeLabel" destination="8K2-wf-ZRt" id="ZGb-sh-Mw8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vix-MR-Pta">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vix-MR-Pta">
                     <rect key="frame" x="36.666666666666657" y="287" width="320" height="224.33333333333337"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5G4-qs-gXl">

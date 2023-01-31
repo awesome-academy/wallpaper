@@ -21,4 +21,5 @@ protocol APIRespository {
 
     func getVideosNextPage(nextUrl: String, completion: @escaping (Videos?, Error?) -> Void)
 
+    func getDataByPage<T: Codable>(url: String, completion: @escaping (T?, Error?) -> Void)
 }

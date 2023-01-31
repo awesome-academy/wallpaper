@@ -37,6 +37,7 @@ final class ImageViewController: UIViewController {
     }
 
     private func switchCategory(category: String) {
+        images = []
         switch CategoryPhoto(rawValue: category) {
         case .animal:
             getImagesByName(name: CategoryPhoto.animal.rawValue)

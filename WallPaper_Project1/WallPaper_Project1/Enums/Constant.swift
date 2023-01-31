@@ -7,12 +7,14 @@
 
 import Foundation
 enum BaseUrl: String {
-    case photo = "https://api.pexels.com/v1/"
-    case video = "https://api.pexels.com/videos/"
+    case baseUrl = "https://api.pexels.com/"
 }
 
 enum EndpointAPI: String {
-    case search = "search?query="
-    case curatedPhoto = "curated"
-    case popularVideo = "popular"
+    case searchPhoto = "v1/search?query="
+    case curatedPhoto = "v1/curated"
+    case popularVideo = "videos/popular"
+    case searchVideo = "videos/v1/search?query="
+    case pagePhoto = "v1/search/"
+    case pageVideo = "v1/videos/search/"
 }
