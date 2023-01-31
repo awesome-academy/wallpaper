@@ -21,42 +21,50 @@ struct DataRepository: APIRespository {
 
     func getImagesCurated(completion: @escaping (Images?, Error?) -> Void) {
         apiCaller.getJSON(
-            urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.curatedPhoto.rawValue)" ) {(data: Images?, error) in
-            if let data = data {
-                completion(data, error)
+            urlApi: "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.curatedPhoto.rawValue)" ) {(data: Images?, error) in
+                if let data = data {
+                    completion(data, error)
+                }
             }
-        }
     }
 
     func getImagesByName(name: String, completion: @escaping (Images?, Error?) -> Void) {
         apiCaller.getJSON(
-            urlApi: "\(BaseUrl.photo.rawValue)\(EndpointAPI.search.rawValue)\(name)" ) { (data: Images?, error) in
-            if let data = data {
-                completion(data, error)
+            urlApi: "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.searchPhoto.rawValue)\(name)" ) { (data: Images?, error) in
+                if let data = data {
+                    completion(data, error)
+                }
             }
-        }
     }
 
     func getVideosByName(name: String, completion: @escaping (Videos?, Error?) -> Void) {
         apiCaller.getJSON(
-            urlApi: "\(BaseUrl.video.rawValue)\(EndpointAPI.search.rawValue)\(name)") { (data: Videos?, error) in
-            if let data = data {
-                completion(data, error)
+            urlApi: "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.searchVideo.rawValue)\(name)") { (data: Videos?, error) in
+                if let data = data {
+                    completion(data, error)
+                }
             }
-        }
     }
 
     func getVideosPopular(completion: @escaping (Videos?, Error?) -> Void) {
         apiCaller.getJSON(
-            urlApi: "\(BaseUrl.video.rawValue)\(EndpointAPI.popularVideo.rawValue)") { (data: Videos?, error) in
+            urlApi: "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.popularVideo.rawValue)") { (data: Videos?, error) in
+                if let data = data {
+                    completion(data, error)
+                }
+            }
+    }
+
+    func getVideosNextPage(nextUrl: String, completion: @escaping (Videos?, Error?) -> Void) {
+        apiCaller.getJSON(urlApi: nextUrl) { (data: Videos?, error) in
             if let data = data {
                 completion(data, error)
             }
         }
     }
 
-    func getVideosNextPage(nextUrl: String, completion: @escaping (Videos?, Error?) -> Void) {
-        apiCaller.getJSON(urlApi: nextUrl) { (data: Videos?, error) in
+    func getDataByPage<T: Codable>(url: String, completion: @escaping (T?, Error?) -> Void) {
+        apiCaller.getJSON(urlApi: url) {(data: T?, error) in
             if let data = data {
                 completion(data, error)
             }
