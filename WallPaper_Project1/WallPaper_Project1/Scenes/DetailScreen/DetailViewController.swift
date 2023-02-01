@@ -10,6 +10,7 @@ import AVFoundation
 import Photos
 
 final class DetailViewController: UIViewController {
+    static let identifier = "DetailViewController"
     @IBOutlet private weak var downloadButton: UIButton!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var detailImageView: UIImageView!

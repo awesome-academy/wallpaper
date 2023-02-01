@@ -277,7 +277,7 @@
         </view>
         <tapGestureRecognizer id="KpJ-nV-abk">
             <connections>
-                <action selector="pagePositionContainerView1:" destination="-1" id="BPj-SY-GOQ"/>
+                <action selector="pagePositionContainerView1:" destination="-1" id="Jau-s9-HC7"/>
             </connections>
         </tapGestureRecognizer>
         <tapGestureRecognizer id="I7S-7B-yAD">
