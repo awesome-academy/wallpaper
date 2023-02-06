@@ -137,6 +137,9 @@
                                     <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="34"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="favoriteButtonTapped:" destination="-1" eventType="touchUpInside" id="Wbw-HE-Ije"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

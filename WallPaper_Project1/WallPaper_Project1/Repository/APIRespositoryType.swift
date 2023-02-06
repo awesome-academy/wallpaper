@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol APIRespository {
+protocol APIRespositoryType {
 
     func getImagesByName(name: String, completion: @escaping (Images?, Error?) -> Void)
 

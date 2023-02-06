@@ -58,3 +58,8 @@ enum CategoryVideo: String {
     case car = "Car"
     case robot = "Robot"
 }
+
+enum CoreDataSelection {
+    case favoriteCoreData
+    case downloadCoreData
+}

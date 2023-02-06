@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CategoryCollectionViewCell: UICollectionViewCell, ReuseCell {
+final class CategoryCollectionViewCell: UICollectionViewCell, ReuseCellType {
     @IBOutlet private weak var categoryNameLabel: UILabel!
     @IBOutlet private weak var containerView: UIView!
     

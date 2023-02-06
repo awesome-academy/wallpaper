@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ReuseCell: AnyObject {
+protocol ReuseCellType: AnyObject {
     static var defaultReuseIdentifier: String { get }
     static var nibName: String { get }
 }

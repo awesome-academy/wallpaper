@@ -19,6 +19,11 @@ final class SearchViewController: UIViewController {
     @IBOutlet private weak var numberPagePositionContainerView4: UIView!
     @IBOutlet private weak var numberPagePositionContainerView5: UIView!
     @IBOutlet private var numberPageLabels: [UILabel]!
+    @IBOutlet private var numberPageLabelPosition1: UILabel!
+    @IBOutlet private var numberPageLabelPosition2: UILabel!
+    @IBOutlet private var numberPageLabelPosition3: UILabel!
+    @IBOutlet private var numberPageLabelPosition4: UILabel!
+    @IBOutlet private var numberPageLabelPosition5: UILabel!
     @IBOutlet private weak var pageViewContainer: UIView!
     private var videoIconImage: UIImage?
     private var photoIconImage: UIImage?
@@ -60,6 +65,12 @@ final class SearchViewController: UIViewController {
         }
     }
 
+    @IBAction func numberPageTapped(_ sender: Any) {
+        pageNumberViewContainers.forEach { containerView in
+            containerView.circleView()
+        }
+        
+    }
     private func configCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self

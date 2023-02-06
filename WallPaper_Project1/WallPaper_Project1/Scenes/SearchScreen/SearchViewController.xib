@@ -11,6 +11,11 @@
             <connections>
                 <outlet property="collectionView" destination="nmc-xp-O0s" id="dT7-ab-Pwb"/>
                 <outlet property="noResultLabel" destination="UUf-QY-dnn" id="MbL-OU-hrb"/>
+                <outlet property="numberPageLabelPosition1" destination="xSH-WR-Zdb" id="7uW-mP-Hrl"/>
+                <outlet property="numberPageLabelPosition2" destination="Bjy-ey-65y" id="Fms-rW-PCa"/>
+                <outlet property="numberPageLabelPosition3" destination="Wa2-4e-Epj" id="HJF-qS-Iqn"/>
+                <outlet property="numberPageLabelPosition4" destination="Db2-gp-5a9" id="AGm-3R-nEK"/>
+                <outlet property="numberPageLabelPosition5" destination="pTV-ex-fpf" id="0MJ-EG-J3A"/>
                 <outlet property="numberPagePositionContainerView1" destination="63Y-u1-sCO" id="ZMl-Hb-PBr"/>
                 <outlet property="numberPagePositionContainerView2" destination="im8-Co-gqb" id="xGQ-ts-qtR"/>
                 <outlet property="numberPagePositionContainerView3" destination="FEz-5W-Mo5" id="A5g-NN-bjY"/>
