@@ -30,12 +30,22 @@ final class ImageViewController: UIViewController {
         configRefesh()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        checkNetworkConnection()
+    }
+
+    private func checkNetworkConnection() {
+        if NetWorkMonitor.shared.isConnected == false {
+            showPopUp(notice: "No Network connection")
+        }
+    }
+
     private func getImageCurated() {
         dataRepository.getImagesCurated() { [unowned self] (data, error) in
             getImageData(data: data, error: error)
         }
     }
-
+    
     private func switchCategory(category: String) {
         images = []
         switch CategoryPhoto(rawValue: category) {
@@ -92,6 +102,7 @@ final class ImageViewController: UIViewController {
     }
 
     @objc private func refreshData(_ sender: Any) {
+        checkNetworkConnection()
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.imageCollectionView.reloadData()
@@ -99,7 +110,7 @@ final class ImageViewController: UIViewController {
     }
 
     private func showPopUp(notice: String) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {[unowned self] in
             let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
             popUpView.bindData(notice: notice)
             addChild(popUpView)

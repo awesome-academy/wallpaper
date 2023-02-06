@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol CoreDataRepositoryType {
-    func addToCoreData(data: CoreDataObject?, nameEntity: String, completion: @escaping (Error?) -> Void)
+    func addToCoreData(data: Media?, nameEntity: String, completion: @escaping (Error?) -> Void)
 
     func removeCoreData(id: Int, nameEntity: String, completion: @escaping (Error?) -> Void)
 

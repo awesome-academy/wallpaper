@@ -19,8 +19,8 @@ final class PersonalViewController: UIViewController {
     private var images = [Image]()
     private var videos = [Videos]()
     private let coreData = LocalData.shared
-    private var dataDownloadFromCoreData = [CoreDataObject]()
-    private var dataFavoriteFromCoreData = [CoreDataObject]()
+    private var dataDownloadFromCoreData = [Media]()
+    private var dataFavoriteFromCoreData = [Media]()
     private let apiCaller = APICaller.shared
     private let refreshControl = UIRefreshControl()
     private var isDownloadButtonTapped = true
@@ -31,6 +31,23 @@ final class PersonalViewController: UIViewController {
         configCollectionView()
         getDataFromCoreData()
         configRefesh()
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name(rawValue: "UpdatePersonalViewController"), object: nil)
+    }
+
+    @objc func update() {
+        getDataFromCoreData()
+        updateNumberFavoriteAndDownload()
+        collectionView?.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        checkNetworkConnection()
+    }
+
+    private func checkNetworkConnection() {
+        if NetWorkMonitor.shared.isConnected == false {
+            showPopUp(notice: "No Network connection")
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -39,8 +56,8 @@ final class PersonalViewController: UIViewController {
     }
 
     private func updateNumberFavoriteAndDownload() {
-        numberDownloadLabel.text = "\(dataDownloadFromCoreData.count)"
-        numberFavoriteLabel.text = "\(dataFavoriteFromCoreData.count)"
+        numberDownloadLabel?.text = "\(dataDownloadFromCoreData.count)"
+        numberFavoriteLabel?.text = "\(dataFavoriteFromCoreData.count)"
     }
 
     private func configRefesh() {
@@ -65,7 +82,7 @@ final class PersonalViewController: UIViewController {
                 return
             }
             dataDownloadFromCoreData = items.map {
-                changeNSManagedObjectToCoreDataObject(nsManagedObject: $0)
+                changeNSManagedObjectToMedia(nsManagedObject: $0)
             }
         }
 
@@ -75,7 +92,7 @@ final class PersonalViewController: UIViewController {
                 return
             }
             dataFavoriteFromCoreData = items.map {
-                changeNSManagedObjectToCoreDataObject(nsManagedObject: $0)
+                changeNSManagedObjectToMedia(nsManagedObject: $0)
             }
         }
     }
@@ -91,27 +108,37 @@ final class PersonalViewController: UIViewController {
         collectionView.register(nibName: ImageCollectionViewCell.self)
         collectionView.register(nibName: VideoCollectionViewCell.self)
     }
-    
+
     private func showPopUp(notice: String) {
-        let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
-        popUpView.bindData(notice: notice)
         DispatchQueue.main.async {[unowned self] in
+            let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
+            popUpView.bindData(notice: notice)
             addChild(popUpView)
             view.addSubview(popUpView.view)
         }
     }
 
-    private func changeNSManagedObjectToCoreDataObject (nsManagedObject: NSManagedObject) -> CoreDataObject {
+    private func changeNSManagedObjectToMedia (nsManagedObject: NSManagedObject) -> Media {
         let id = nsManagedObject.value(forKey: "id") as? Int ?? 0
         let width = nsManagedObject.value(forKey: "width") as? Int
         let height = nsManagedObject.value(forKey: "height") as? Int
         let url = nsManagedObject.value(forKey: "url") as? String
         let photographer = nsManagedObject.value(forKey: "photographer") as? String
         let photographerId = nsManagedObject.value(forKey: "photographerId") as? Int
+        let photographerUrl = nsManagedObject.value(forKey: "photographerUrl") as? String
         let avgColor = nsManagedObject.value(forKey: "avgColor") as? String
         let isVideo = nsManagedObject.value(forKey: "isVideo") as? Int
         let videoDuration = nsManagedObject.value(forKey: "videoDuration") as? Int
-        return CoreDataObject(id: id, width: width, height: height, url: url, photographer: photographer, photographerId: photographerId, avgColor: avgColor, isVideo: isVideo ?? 0, videoDuration: videoDuration )
+        return Media(id: id,
+                     width: width,
+                     height: height,
+                     url: url,
+                     photographer: photographer,
+                     photographerId: photographerId,
+                     photographerUrl: photographerUrl,
+                     avgColor: avgColor,
+                     isVideo: isVideo ?? 0,
+                     videoDuration: videoDuration )
     }
 
     @IBAction func downloadButtonTapped(_ sender: Any) {

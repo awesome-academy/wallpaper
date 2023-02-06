@@ -79,6 +79,16 @@ final class SearchViewController: UIViewController {
         collectionView.register(nibName: VideoCollectionViewCell.self)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        checkNetworkConnection()
+    }
+
+    private func checkNetworkConnection() {
+        if NetWorkMonitor.shared.isConnected == false {
+            showPopUp(notice: "No Network connection")
+        }
+    }
+
     private func getImagesByName(name: String) {
         dataRepository.getImagesByName(name: name) { [unowned self] (data, error) in
             getData(data: data, error: error)

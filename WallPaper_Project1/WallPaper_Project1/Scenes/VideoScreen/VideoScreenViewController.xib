@@ -21,39 +21,15 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-0z-JJp">
-                    <rect key="frame" x="10" y="38" width="394" height="46"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.3.horizontal" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="df0-HR-axa">
-                            <rect key="frame" x="0.0" y="5" width="46" height="36.5"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="Bix-kT-5Xo"/>
-                                <constraint firstAttribute="height" constant="46" id="HgP-fo-0Ns"/>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="46" id="oHS-Nj-A0k"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WallPaper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYs-dw-ptj">
-                            <rect key="frame" x="108.5" y="3.5" width="183" height="39"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="183" id="8b7-m7-vnZ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ivh-q8-6bY">
-                            <rect key="frame" x="354" y="3.5" width="40" height="38.5"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="CTE-qx-wfk"/>
-                                <constraint firstAttribute="height" constant="40" id="HFw-r0-SY1"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="f11-g7-8Ad"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="uCp-HA-2eY"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WallPaper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYs-dw-ptj">
+                    <rect key="frame" x="118.5" y="41.5" width="183" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="183" id="8b7-m7-vnZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gth-so-yWm">
                     <rect key="frame" x="10" y="104" width="394" height="57"/>
                     <subviews>
@@ -94,24 +70,20 @@
             </subviews>
             <color key="backgroundColor" red="0.1254901886" green="0.1254901886" blue="0.1254901886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="TbS-0z-JJp" secondAttribute="trailing" constant="10" id="3h3-ll-mnE"/>
                 <constraint firstAttribute="trailing" secondItem="gth-so-yWm" secondAttribute="trailing" constant="10" id="7Ze-8G-oxC"/>
                 <constraint firstAttribute="trailing" secondItem="Hav-eg-3dn" secondAttribute="trailing" constant="10" id="99X-0h-v5Y"/>
                 <constraint firstItem="Hav-eg-3dn" firstAttribute="top" secondItem="gth-so-yWm" secondAttribute="bottom" constant="20" id="E0M-Xv-zvO"/>
                 <constraint firstItem="gth-so-yWm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Ehb-eZ-2d4"/>
-                <constraint firstItem="TbS-0z-JJp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="WB9-Ec-aSC"/>
+                <constraint firstItem="MYs-dw-ptj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="118.5" id="JgH-3Y-9c9"/>
+                <constraint firstItem="MYs-dw-ptj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41.5" id="Q35-cX-u3t"/>
                 <constraint firstAttribute="bottom" secondItem="Hav-eg-3dn" secondAttribute="bottom" id="aSj-kS-zNV"/>
                 <constraint firstItem="Hav-eg-3dn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="bq9-KU-xPf"/>
-                <constraint firstItem="gth-so-yWm" firstAttribute="top" secondItem="TbS-0z-JJp" secondAttribute="bottom" constant="20" id="mro-sq-9QJ"/>
-                <constraint firstItem="TbS-0z-JJp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="38" id="o0z-Mp-y80"/>
-                <constraint firstItem="gth-so-yWm" firstAttribute="centerX" secondItem="TbS-0z-JJp" secondAttribute="centerX" id="uvX-yg-olG"/>
+                <constraint firstItem="gth-so-yWm" firstAttribute="top" secondItem="MYs-dw-ptj" secondAttribute="bottom" constant="23.5" id="oTL-k5-VCL"/>
             </constraints>
             <point key="canvasLocation" x="5.7971014492753632" y="20.758928571428569"/>
         </view>
     </objects>
     <resources>
-        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
