@@ -48,6 +48,13 @@ final class TabBarViewController: UITabBarController {
             }
         }
     }
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if let tabBarItemName = tabBar.selectedItem?.title {
+            if tabBarItemName == "Personal" {
+                personalViewController.update()
+            }
+        }
+    }
 
     private func customTabBar() {
         drawLayerTabBar()

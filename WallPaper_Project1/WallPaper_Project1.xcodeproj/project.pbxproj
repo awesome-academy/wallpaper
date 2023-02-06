@@ -24,6 +24,7 @@
 		1A7DF39F296EBA350013C264 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF39E296EBA350013C264 /* HexColor.swift */; };
 		1A7DF3A3296F00B80013C264 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DF3A1296F00B80013C264 /* PopUpViewController.swift */; };
 		1A7DF3A4296F00B80013C264 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7DF3A2296F00B80013C264 /* PopUpViewController.xib */; };
+		1A7E8CDA2990F02C00C62BA1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E8CD92990F02C00C62BA1 /* NetworkMonitor.swift */; };
 		1A89CA4F2967BF5200F369C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */; };
 		1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A89CA572967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld */; };
 		1A89CA5B2967BF5300F369C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A89CA5A2967BF5300F369C9 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		1A7DF39E296EBA350013C264 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		1A7DF3A1296F00B80013C264 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		1A7DF3A2296F00B80013C264 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		1A7E8CD92990F02C00C62BA1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		1A89CA4B2967BF5200F369C9 /* WallPaper_Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallPaper_Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A89CA4E2967BF5200F369C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A89CA582967BF5200F369C9 /* WallPaper_Project1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallPaper_Project1.xcdatamodel; sourceTree = "<group>"; };
@@ -192,6 +194,14 @@
 			path = PopUp;
 			sourceTree = "<group>";
 		};
+		1A7E8CD82990ED8F00C62BA1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E8CD92990F02C00C62BA1 /* NetworkMonitor.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		1A89CA422967BF5100F369C9 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +221,7 @@
 		1A89CA4D2967BF5200F369C9 /* WallPaper_Project1 */ = {
 			isa = PBXGroup;
 			children = (
+				1A7E8CD82990ED8F00C62BA1 /* Network */,
 				1A8C4A2C2968279100063D38 /* Enums */,
 				1A89CA9B2968036F00F369C9 /* Extensions */,
 				1A89CA9A2968034C00F369C9 /* Repository */,
@@ -545,6 +556,7 @@
 				1A7DF39F296EBA350013C264 /* HexColor.swift in Sources */,
 				1A89CA592967BF5200F369C9 /* WallPaper_Project1.xcdatamodeld in Sources */,
 				1A8C4A432969484600063D38 /* AuthorViewController.swift in Sources */,
+				1A7E8CDA2990F02C00C62BA1 /* NetworkMonitor.swift in Sources */,
 				1A8C4A3429692A2200063D38 /* DataRepository.swift in Sources */,
 				1AAA1231298967D900792976 /* LocalData.swift in Sources */,
 				1AA8937C296FE46800B7C668 /* LoadCollectionReusableView.swift in Sources */,

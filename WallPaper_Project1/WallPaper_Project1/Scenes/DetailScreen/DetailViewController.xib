@@ -115,8 +115,9 @@
                                         <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="vl0-HL-k3N"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duy Thai" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fb1-7Q-aEV">
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duy Thai" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fb1-7Q-aEV">
                                     <rect key="frame" x="87" y="0.0" width="200" height="50"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="IvO-vf-zsM"/>
                                         <constraint firstAttribute="height" constant="50" id="gV5-ug-Kv6"/>
@@ -124,6 +125,9 @@
                                     <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="ESz-iF-d3h" appends="YES" id="oIr-Y8-a19"/>
+                                    </connections>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48H-GC-GfL">
                                     <rect key="frame" x="342" y="9" width="32" height="32"/>
@@ -232,6 +236,11 @@
             </constraints>
             <point key="canvasLocation" x="53.623188405797109" y="19.419642857142858"/>
         </view>
+        <tapGestureRecognizer id="ESz-iF-d3h">
+            <connections>
+                <action selector="authorLabelTapped:" destination="-1" id="TPf-LB-a9f"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="anh-gai-xinh-cute-50" width="600" height="750"/>

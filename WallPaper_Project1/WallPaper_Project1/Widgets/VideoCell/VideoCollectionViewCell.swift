@@ -62,7 +62,7 @@ class VideoCollectionViewCell: UICollectionViewCell, ReuseCellType {
         videoDuration = video.duration
     }
 
-    func setInformationFromCoreData(data: CoreDataObject) {
+    func setInformationFromCoreData(data: Media) {
         idVideo = data.id
         videoDuration = data.videoDuration ?? 0
     }

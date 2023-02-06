@@ -22,7 +22,7 @@ struct LocalData: CoreDataRepositoryType {
         return container
     }()
 
-    func addToCoreData(data: CoreDataObject?, nameEntity: String, completion: @escaping (Error?) -> Void) {
+    func addToCoreData(data: Media?, nameEntity: String, completion: @escaping (Error?) -> Void) {
         let managedContext = persistentContainer.viewContext
         guard let  entity = NSEntityDescription.entity(forEntityName: nameEntity, in: managedContext) else {
             return
@@ -34,6 +34,7 @@ struct LocalData: CoreDataRepositoryType {
         dataEntity.setValue(data?.url, forKey: "url")
         dataEntity.setValue(data?.photographer, forKey: "photographer")
         dataEntity.setValue(data?.photographerId, forKey: "photographerId")
+        dataEntity.setValue(data?.photographerUrl, forKey: "photographerUrl")
         dataEntity.setValue(data?.avgColor, forKey: "avgColor")
         dataEntity.setValue(data?.isVideo, forKey: "isVideo")
 

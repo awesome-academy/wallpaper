@@ -37,6 +37,16 @@ final class VideoScreenViewController: UIViewController {
 
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        checkNetworkConnection()
+    }
+
+    private func checkNetworkConnection() {
+        if NetWorkMonitor.shared.isConnected == false {
+            showPopUp(notice: "No Network connection")
+        }
+    }
+
     @objc private func refreshData(_ sender: Any) {
         DispatchQueue.main.async { [weak self] in
             self?.refreshControl.endRefreshing()

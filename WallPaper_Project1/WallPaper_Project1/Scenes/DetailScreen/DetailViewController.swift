@@ -35,13 +35,19 @@ final class DetailViewController: UIViewController {
     private var imageUrl = ""
     private let coreData = LocalData.shared
     private var isFavorited = false
-    private var dataToSave: CoreDataObject?
+    private var dataToSave: Media?
     private var id = 0
+    private var authorUrl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
         checkIsFavorited()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        PersonalViewController().update()
     }
     
     private func configView() {
@@ -84,7 +90,14 @@ final class DetailViewController: UIViewController {
             player?.pause()
         }
     }
-    
+
+    @IBAction private func authorLabelTapped(_ sender: Any) {
+        let authorViewController = AuthorViewController(nibName: AuthorViewController.identifier, bundle: nil)
+        authorViewController.bindData(authorName: authorNameLabel.text ?? "", authorUrl: authorUrl)
+        authorViewController.modalPresentationStyle = .fullScreen
+        present(authorViewController, animated: true, completion: nil)
+    }
+
     @IBAction private func downloadButtonTapped(_ sender: Any) {
         let waitingLoadingViewController = WaitingLoadingViewController(nibName: "WaitingLoadingViewController", bundle: nil)
         waitingLoadingViewController.updateView(status: true)
@@ -145,6 +158,7 @@ final class DetailViewController: UIViewController {
     }
     
     @IBAction private func backButtonTapped(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdatePersonalViewController"), object: nil, userInfo: nil)
         self.dismiss(animated: true)
     }
     
@@ -155,13 +169,14 @@ final class DetailViewController: UIViewController {
         view.addSubview(popUpView.view)
     }
     
-    private func imageToCoreDataObject(image: Image) -> CoreDataObject{
-        let data = CoreDataObject(id: image.id,
+    private func imageToMedia(image: Image) -> Media{
+        let data = Media(id: image.id,
                                   width: image.width,
                                   height: image.height,
                                   url: image.source.portrait,
                                   photographer: image.photographer,
                                   photographerId: image.photographerId,
+                                  photographerUrl: image.photographerUrl,
                                   avgColor: image.avgColor,
                                   isVideo: 0,
                                   videoDuration: nil)
@@ -171,7 +186,8 @@ final class DetailViewController: UIViewController {
     func bindDataImage(image: Image ) {
         id = image.id
         isVideo = false
-        dataToSave = imageToCoreDataObject(image: image)
+        authorUrl = image.photographerUrl
+        dataToSave = imageToMedia(image: image)
         apiCaller.getImage(imageURL: image.source.portrait) { [weak self] (data, error)  in
             guard let self = self else { return }
             if let error = error {
@@ -184,9 +200,8 @@ final class DetailViewController: UIViewController {
                 }
             }
         }
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.updateImageView(image: image)
+        DispatchQueue.main.async {[unowned self] in
+            updateImageView(image: image)
         }
     }
     
@@ -198,13 +213,14 @@ final class DetailViewController: UIViewController {
         colorImageLabel.text = "Color: \(image.avgColor)"
     }
     
-    private func videoToCoreDataObject(video: Video) -> CoreDataObject{
-        let data = CoreDataObject(id: video.id,
+    private func videoToMedia(video: Video) -> Media{
+        let data = Media(id: video.id,
                                   width: video.width,
                                   height: video.height,
                                   url: video.videoFiles[0].link,
                                   photographer: video.user.name,
                                   photographerId: video.user.id,
+                                  photographerUrl: video.user.url,
                                   avgColor: "", isVideo: 1,
                                   videoDuration: video.duration)
         return data
@@ -213,7 +229,8 @@ final class DetailViewController: UIViewController {
     func bindDataVideo(video: Video) {
         id = video.id
         isVideo = true
-        dataToSave = videoToCoreDataObject(video: video)
+        authorUrl = video.user.url
+        dataToSave = videoToMedia(video: video)
         videoUrl = video.videoFiles[0].link
         apiCaller.getVideo(videoURL: videoUrl) { [weak self] (player, error) in
             guard let self = self else { return }
@@ -248,7 +265,7 @@ final class DetailViewController: UIViewController {
         colorImageLabel.text = "Color: no"
     }
     
-    private func informationFromCoreData(data: CoreDataObject) {
+    private func informationFromCoreData(data: Media) {
         if data.isVideo == 1 {
             detailImageView.isHidden = true
         }
@@ -259,9 +276,10 @@ final class DetailViewController: UIViewController {
         colorImageLabel.text = "Color: no"
     }
     
-    func bindDataFromCoreData(data: CoreDataObject) {
+    func bindDataFromCoreData(data: Media) {
         dataToSave = data
         id = data.id
+        authorUrl = data.photographerUrl ?? ""
         if data.isVideo == 1 {
             isVideo = true
             videoUrl = data.url ?? ""
