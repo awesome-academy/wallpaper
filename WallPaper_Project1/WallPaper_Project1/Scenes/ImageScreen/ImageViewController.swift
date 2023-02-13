@@ -9,10 +9,10 @@ import UIKit
 
 final class ImageViewController: UIViewController {
 
-    @IBOutlet private weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet private weak var containerCategoriesView: UIView!
-    @IBOutlet private weak var categoryCollectionView: UICollectionView!
-    private let dataRepository = DataRepository()
+    @IBOutlet  weak var categoryCollectionView: UICollectionView!
+    let dataRepository = DataRepository()
     private let apiCaller = APICaller.shared
     private var images = [Image]()
     private var isLoadMore = false
@@ -34,19 +34,20 @@ final class ImageViewController: UIViewController {
         checkNetworkConnection()
     }
 
-    private func checkNetworkConnection() {
+    func checkNetworkConnection() {
         if NetWorkMonitor.shared.isConnected == false {
             showPopUp(notice: "No Network connection")
         }
     }
 
-    private func getImageCurated() {
-        dataRepository.getImagesCurated() { [unowned self] (data, error) in
-            getImageData(data: data, error: error)
+    func getImageCurated() {
+        dataRepository.getImagesCurated() { [weak self] (data, error) in
+            guard let self = self else {return}
+            self.getImageData(data: data, error: error)
         }
     }
     
-    private func switchCategory(category: String) {
+    func switchCategory(category: String) {
         images = []
         switch CategoryPhoto(rawValue: category) {
         case .animal:
@@ -68,13 +69,13 @@ final class ImageViewController: UIViewController {
         }
     }
 
-    private func getImagesByName(name: String) {
-        dataRepository.getImagesByName(name: name) { [unowned self] (data, error) in
-            getImageData(data: data, error: error)
+    func getImagesByName(name: String) {
+        dataRepository.getImagesByName(name: name) { [weak self] (data, error) in
+            self?.getImageData(data: data, error: error)
         }
     }
 
-    private func getImagesNextPage(url: String) {
+    func getImagesNextPage(url: String) {
         dataRepository.getImagesInNextPage(url: url) { [unowned self] (data, error) in
             getImageData(data: data, error: error)
             isLoadMore = false
@@ -82,7 +83,7 @@ final class ImageViewController: UIViewController {
         }
     }
 
-    private func getImageData(data: Images?, error: Error?) {
+    func getImageData(data: Images?, error: Error?) {
         if let error = error {
             showPopUp(notice: "\(error)")
         }
@@ -93,6 +94,7 @@ final class ImageViewController: UIViewController {
                 self?.imageCollectionView.reloadData()
             }
         }
+
     }
 
     private func configRefesh() {
@@ -101,7 +103,7 @@ final class ImageViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
 
-    @objc private func refreshData(_ sender: Any) {
+    @objc  func refreshData(_ sender: Any) {
         checkNetworkConnection()
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
@@ -109,16 +111,16 @@ final class ImageViewController: UIViewController {
         }
     }
 
-    private func showPopUp(notice: String) {
-        DispatchQueue.main.async {[unowned self] in
+    func showPopUp(notice: String) {
+        DispatchQueue.main.async {[weak self] in
             let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
             popUpView.bindData(notice: notice)
-            addChild(popUpView)
-            view.addSubview(popUpView.view)
+            self?.addChild(popUpView)
+            self?.view.addSubview(popUpView.view)
         }
     }
 
-    private func loadMore(url: String) {
+    func loadMore(url: String) {
         if !isLoadMore {
             isLoadMore = true
             getImagesNextPage(url: url)

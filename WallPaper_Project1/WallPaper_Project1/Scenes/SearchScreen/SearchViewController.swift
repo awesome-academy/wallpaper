@@ -8,16 +8,16 @@
 import UIKit
 
 final class SearchViewController: UIViewController {
-    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private weak var noResultLabel: UILabel!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var previousPageButton: UIButton!
     @IBOutlet private var pageNumberViewContainers: [UIView]!
-    @IBOutlet private weak var numberPagePositionContainerView1: UIView!
-    @IBOutlet private weak var numberPagePositionContainerView2: UIView!
-    @IBOutlet private weak var numberPagePositionContainerView3: UIView!
-    @IBOutlet private weak var numberPagePositionContainerView4: UIView!
-    @IBOutlet private weak var numberPagePositionContainerView5: UIView!
+    @IBOutlet weak var numberPagePositionContainerView1: UIView!
+    @IBOutlet weak var numberPagePositionContainerView2: UIView!
+    @IBOutlet weak var numberPagePositionContainerView3: UIView!
+    @IBOutlet weak var numberPagePositionContainerView4: UIView!
+    @IBOutlet weak var numberPagePositionContainerView5: UIView!
     @IBOutlet private var numberPageLabels: [UILabel]!
     @IBOutlet private var numberPageLabelPosition1: UILabel!
     @IBOutlet private var numberPageLabelPosition2: UILabel!
@@ -28,20 +28,20 @@ final class SearchViewController: UIViewController {
     private var videoIconImage: UIImage?
     private var photoIconImage: UIImage?
     private var isPhotoSearched = true
-    private let dataRepository = DataRepository()
+    let dataRepository = DataRepository()
     private let apiCaller = APICaller.shared
     private var images = [Image]()
     private var videos = [Video]()
     private var currentPositionPage = 1
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollectionView()
         configPageView()
         congfigSearchBarView()
     }
-
-    private func congfigSearchBarView() {
+    
+    func congfigSearchBarView() {
         videoIconImage = UIImage(systemName: "video.circle.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         photoIconImage = UIImage(systemName: "photo.circle.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
@@ -56,57 +56,58 @@ final class SearchViewController: UIViewController {
         searchBar.searchTextField.leftView?.tintColor = .black
         searchBar.setImage(photoIconImage, for: .bookmark, state: .normal)
     }
-
-    private func configPageView() {
+    
+     func configPageView() {
         previousPageButton.tintColor = .gray
         pageViewContainer.layer.cornerRadius = pageViewContainer.frame.size.height / 2
         pageNumberViewContainers.forEach { containerView in
             containerView.circleView()
         }
     }
-
+    
     @IBAction func numberPageTapped(_ sender: Any) {
         pageNumberViewContainers.forEach { containerView in
             containerView.circleView()
         }
         
     }
-    private func configCollectionView() {
+    func configCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(nibName: ImageCollectionViewCell.self)
         collectionView.isHidden = true
         collectionView.register(nibName: VideoCollectionViewCell.self)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         checkNetworkConnection()
     }
-
+    
     private func checkNetworkConnection() {
         if NetWorkMonitor.shared.isConnected == false {
             showPopUp(notice: "No Network connection")
         }
     }
-
-    private func getImagesByName(name: String) {
-        dataRepository.getImagesByName(name: name) { [unowned self] (data, error) in
-            getData(data: data, error: error)
+    
+    func getImagesByName(name: String) {
+        dataRepository.getImagesByName(name: name) { [weak self] (data, error) in
+            self?.getData(data: data, error: error)
         }
     }
-
-    private func showCollectionView() {
+    
+    func showCollectionView() {
         if isPhotoSearched {
             if images.count <= 0 {
-                DispatchQueue.main.async { [unowned self] in
-                    collectionView.isHidden = true
-                    noResultLabel.text = "No result image for \(searchBar.text ?? "")"
-                    noResultLabel.isHidden = false
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.collectionView.isHidden = true
+                    self.noResultLabel.text = "No result image for \(self.searchBar.text ?? "")"
+                    self.noResultLabel.isHidden = false
                 }
             } else {
-                DispatchQueue.main.async { [unowned self] in
-                    noResultLabel.isHidden = true
-                    collectionView.isHidden = false
+                DispatchQueue.main.async { [weak self] in
+                    self?.noResultLabel.isHidden = true
+                    self?.collectionView.isHidden = false
                 }
             }
         } else {
@@ -124,14 +125,14 @@ final class SearchViewController: UIViewController {
             }
         }
     }
-
-    private func getVideosByName(name: String) {
-        dataRepository.getVideosByName(name: name) { [unowned self] (data, error) in
-            getData(data: data, error: error)
+    
+    func getVideosByName(name: String) {
+        dataRepository.getVideosByName(name: name) { [weak self] (data, error) in
+            self?.getData(data: data, error: error)
         }
     }
-
-    private func getData<T>(data: T?, error: Error?) {
+    
+    func getData<T>(data: T?, error: Error?) {
         if let error = error {
             showPopUp(notice: "\(error)")
         }
@@ -147,37 +148,37 @@ final class SearchViewController: UIViewController {
             }
         }
     }
-
-    private func getVideosByPage(numberPage: String, querry: String) {
+    
+    func getVideosByPage(numberPage: String, querry: String) {
         let urlApi = "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.pageVideo.rawValue)?page=\(numberPage)&per_page=15&query=\(querry)"
-        dataRepository.getDataByPage(url: urlApi) { [unowned self] (data: Videos?, error) in
-             getData(data: data, error: error)
-         }
-    }
-
-    private func getImagesByPage(numberPage: String, querry: String) {
-       let urlApi = "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.pagePhoto.rawValue)?page=\(numberPage)&per_page=15&query=\(querry)"
-        dataRepository.getDataByPage(url: urlApi) { [unowned self] (data: Images?, error) in
-            getData(data: data, error: error)
+        dataRepository.getDataByPage(url: urlApi) { [weak self] (data: Videos?, error) in
+            self?.getData(data: data, error: error)
         }
     }
-
-    private func showPopUp(notice: String) {
+    
+    func getImagesByPage(numberPage: String, querry: String) {
+        let urlApi = "\(BaseUrl.baseUrl.rawValue)\(EndpointAPI.pagePhoto.rawValue)?page=\(numberPage)&per_page=15&query=\(querry)"
+        dataRepository.getDataByPage(url: urlApi) { [weak self] (data: Images?, error) in
+            self?.getData(data: data, error: error)
+        }
+    }
+    
+    func showPopUp(notice: String) {
         let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
         popUpView.bindData(notice: notice)
         addChild(popUpView)
         view.addSubview(popUpView.view)
     }
-
-    private func pageIsSelected(numberPage: String) {
+    
+    func pageIsSelected(numberPage: String) {
         let querry = searchBar.text ?? ""
         pageNumberViewContainers.forEach { containerView in
             containerView.backgroundColor = .clear
         }
         isPhotoSearched ? getImagesByPage(numberPage: numberPage, querry: querry) : getVideosByPage(numberPage: numberPage, querry: querry)
     }
-
-    @IBAction private func pagePositionContainerView1(_ sender: UITapGestureRecognizer?) {
+    
+    @IBAction func pagePositionContainerView1(_ sender: UITapGestureRecognizer?) {
         if numberPagePositionContainerView1.backgroundColor != UIColor.seclectedColor {
             currentPositionPage = 1
             let numberPage = numberPageLabels[0].text ?? ""
@@ -185,8 +186,8 @@ final class SearchViewController: UIViewController {
             numberPagePositionContainerView1.backgroundColor = UIColor.seclectedColor
         }
     }
-
-    @IBAction private func pagePositionContainerView2(_ sender: UITapGestureRecognizer?) {
+    
+    @IBAction func pagePositionContainerView2(_ sender: UITapGestureRecognizer?) {
         if numberPagePositionContainerView2.backgroundColor != UIColor.seclectedColor {
             currentPositionPage = 2
             let numberPage = numberPageLabels[1].text ?? ""
@@ -194,8 +195,8 @@ final class SearchViewController: UIViewController {
             numberPagePositionContainerView2.backgroundColor = UIColor.seclectedColor
         }
     }
-
-    @IBAction private func pagePositionContainerView3(_ sender: UITapGestureRecognizer?) {
+    
+    @IBAction func pagePositionContainerView3(_ sender: UITapGestureRecognizer?) {
         if numberPagePositionContainerView3.backgroundColor != UIColor.seclectedColor {
             currentPositionPage = 3
             let numberPage = numberPageLabels[2].text ?? ""
@@ -203,8 +204,8 @@ final class SearchViewController: UIViewController {
             numberPagePositionContainerView3.backgroundColor = UIColor.seclectedColor
         }
     }
-
-    @IBAction private func pagePositionContainerView4(_ sender: UITapGestureRecognizer?) {
+    
+    @IBAction func pagePositionContainerView4(_ sender: UITapGestureRecognizer?) {
         if numberPagePositionContainerView4.backgroundColor != UIColor.seclectedColor {
             currentPositionPage = 4
             let numberPage = numberPageLabels[3].text ?? ""
@@ -212,8 +213,8 @@ final class SearchViewController: UIViewController {
             numberPagePositionContainerView4.backgroundColor = UIColor.seclectedColor
         }
     }
-
-    @IBAction private func pagePositionContainerView5(_ sender: UITapGestureRecognizer?) {
+    
+    @IBAction func pagePositionContainerView5(_ sender: UITapGestureRecognizer?) {
         if numberPagePositionContainerView5.backgroundColor != UIColor.seclectedColor {
             currentPositionPage = 5
             let numberPage = numberPageLabels[4].text ?? ""
@@ -221,8 +222,8 @@ final class SearchViewController: UIViewController {
             numberPagePositionContainerView5.backgroundColor = UIColor.seclectedColor
         }
     }
-
-    @IBAction private func previousPageTapped(_ sender: Any) {
+    
+    @IBAction func previousPageTapped(_ sender: Any) {
         switch currentPositionPage {
         case 1:
             if numberPageLabels[0].text == "1" {
@@ -250,8 +251,8 @@ final class SearchViewController: UIViewController {
             showPopUp(notice: "Error selecte page")
         }
     }
-
-    @IBAction private func nextPageTapped(_ sender: Any) {
+    
+    @IBAction func nextPageTapped(_ sender: Any) {
         switch currentPositionPage {
         case 1:
             pagePositionContainerView2(nil)
@@ -273,8 +274,8 @@ final class SearchViewController: UIViewController {
             showPopUp(notice: "Error select page")
         }
     }
-
-    private func setPage() {
+    
+    func setPage() {
         currentPositionPage = 1
         let numberPage = numberPageLabels[0].text ?? ""
         pageIsSelected(numberPage: numberPage)
@@ -286,11 +287,11 @@ final class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return isPhotoSearched ? images.count : videos.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isPhotoSearched {
             guard let cell: ImageCollectionViewCell =
@@ -365,7 +366,7 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension SearchViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         setPage()
         if isPhotoSearched {
@@ -375,7 +376,7 @@ extension SearchViewController: UISearchBarDelegate {
         }
         searchBar.endEditing(true)
     }
-
+    
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         isPhotoSearched = !isPhotoSearched
         setPage()
@@ -389,9 +390,9 @@ extension SearchViewController: UISearchBarDelegate {
         } else {
             getVideosByName(name: searchBar.text ?? "")
             searchBar.setImage(videoIconImage, for: .bookmark, state: .normal)
-            DispatchQueue.main.async { [unowned self] in
-                searchBar.searchTextField.placeholder = "Enter name video"
-                collectionView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.searchBar.searchTextField.placeholder = "Enter name video"
+                self?.collectionView.reloadData()
             }
         }
     }

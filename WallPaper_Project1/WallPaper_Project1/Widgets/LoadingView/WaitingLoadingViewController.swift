@@ -15,7 +15,7 @@ final class WaitingLoadingViewController: UIViewController {
         super.viewDidLoad()
         configView()
     }
-    private func configView() {
+    func configView() {
         containerView?.layer.cornerRadius = 12
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -25,14 +25,14 @@ final class WaitingLoadingViewController: UIViewController {
 
     func updateView(status: Bool) {
         if status {
-            DispatchQueue.main.async { [unowned self] in
-                containerView?.isHidden = true
-                loadActivityIndicator?.startAnimating()
+            DispatchQueue.main.async { [weak self] in
+                self?.containerView?.isHidden = true
+                self?.loadActivityIndicator?.startAnimating()
             }
         } else {
-            DispatchQueue.main.async { [unowned self] in
-                containerView?.isHidden = false
-                loadActivityIndicator?.stopAnimating()
+            DispatchQueue.main.async { [weak self] in
+                self?.containerView?.isHidden = false
+                self?.loadActivityIndicator?.stopAnimating()
             }
             DispatchQueue.main.async {
                 self.dismiss(animated: true)

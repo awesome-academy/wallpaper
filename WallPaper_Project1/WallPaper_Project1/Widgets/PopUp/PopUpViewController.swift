@@ -22,7 +22,7 @@ final class PopUpViewController: UIViewController {
         self.notice = notice
     }
 
-    @IBAction private func closeButtonTapped(_ sender: Any) {
+    @IBAction  func closeButtonTapped(_ sender: Any) {
         self.view.removeFromSuperview()
     }
 }

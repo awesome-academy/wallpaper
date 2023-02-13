@@ -40,7 +40,7 @@ class NetWorkMonitor {
             connectionType = .wifi
         } else if path.usesInterfaceType(.cellular) {
             connectionType = .cellular
-        }else if path.usesInterfaceType(.loopback) {
+        } else if path.usesInterfaceType(.loopback) {
             connectionType = .loopback
         } else if path.usesInterfaceType(.wiredEthernet) {
             connectionType = .wiredEthernet
