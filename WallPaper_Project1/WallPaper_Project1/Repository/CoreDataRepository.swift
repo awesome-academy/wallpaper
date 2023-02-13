@@ -13,7 +13,7 @@ protocol CoreDataRepositoryType {
 
     func removeCoreData(id: Int, nameEntity: String, completion: @escaping (Error?) -> Void)
 
-    func getDataFromCoreData(nameEntity: String, completion: @escaping ([NSManagedObject], Error?) -> (Void))
+    func getDataFromCoreData(nameEntity: String, completion: @escaping ([NSManagedObject], Error?) -> Void)
 
     func checkInCoreData(id: Int, nameEntity: String) -> Bool
 }

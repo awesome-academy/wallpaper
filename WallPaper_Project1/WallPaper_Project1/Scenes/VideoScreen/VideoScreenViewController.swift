@@ -10,18 +10,18 @@ import AVFoundation
 
 final class VideoScreenViewController: UIViewController {
     @IBOutlet private weak var containerCategoriesView: UIView!
-    @IBOutlet private weak var videoCollectionView: UICollectionView!
-    @IBOutlet private weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var videoCollectionView: UICollectionView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     private let apiCaller = APICaller.shared
     private let dataRepository = DataRepository()
-    private var videos = [Video]()
+    var videos = [Video]()
     private var indexCategorySelected = 0
     private var urlNextPage = ""
     private let refreshControl = UIRefreshControl()
     private var isLoadMore = false
     private var loadingBottomView: LoadCollectionReusableView?
     private let categories = ["Popular", "Nature", "Sea", "Sky", "Animal", "Car", "Robot"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configCategoryView()
@@ -29,32 +29,31 @@ final class VideoScreenViewController: UIViewController {
         configRefesh()
         getVideosPopular()
     }
-
-    private func configRefesh() {
+    
+     func configRefesh() {
         videoCollectionView.refreshControl = refreshControl
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         checkNetworkConnection()
     }
-
-    private func checkNetworkConnection() {
+    
+    func checkNetworkConnection() {
         if NetWorkMonitor.shared.isConnected == false {
             showPopUp(notice: "No Network connection")
         }
     }
-
-    @objc private func refreshData(_ sender: Any) {
+    
+    @objc func refreshData(_ sender: Any) {
         DispatchQueue.main.async { [weak self] in
             self?.refreshControl.endRefreshing()
             self?.videoCollectionView.reloadData()
         }
     }
-
-    private func switchCategory(category: String) {
+    
+    func switchCategory(category: String) {
         switch CategoryVideo(rawValue: category) {
         case .animal:
             getVideoByName(name: CategoryPhoto.animal.rawValue)
@@ -74,31 +73,31 @@ final class VideoScreenViewController: UIViewController {
             break
         }
     }
-
-    private func configCategoryView() {
+    
+     func configCategoryView() {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         categoryCollectionView.register(nibName: CategoryCollectionViewCell.self)
         containerCategoriesView.layer.cornerRadius = containerCategoriesView.frame.height / 2
         categoryCollectionView.layer.cornerRadius = categoryCollectionView.frame.height / 2
     }
-
-    private func configVideoView() {
+    
+     func configVideoView() {
         videoCollectionView.delegate = self
         videoCollectionView.dataSource = self
         videoCollectionView.register(nibName: VideoCollectionViewCell.self)
         videoCollectionView.registerHeaderAndFooterView(nibName: LoadCollectionReusableView.self, isHeader: true)
         videoCollectionView.registerHeaderAndFooterView(nibName: LoadCollectionReusableView.self, isHeader: false)
     }
-
-    private func showPopUp(notice: String) {
+    
+     func showPopUp(notice: String) {
         let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
         popUpView.bindData(notice: notice)
         addChild(popUpView)
         view.addSubview(popUpView.view)
     }
-
-    private func getVideosPopular() {
+    
+    func getVideosPopular() {
         dataRepository.getVideosPopular() { [weak self] (data, error) in
             guard let self = self else { return }
             if let error = error {
@@ -113,8 +112,8 @@ final class VideoScreenViewController: UIViewController {
             }
         }
     }
-
-    private func getVideoByName(name: String) {
+    
+    func getVideoByName(name: String) {
         dataRepository.getVideosByName(name: name) { [weak self] (data, error) in
             guard let self = self else { return }
             if let error = error {
@@ -129,8 +128,8 @@ final class VideoScreenViewController: UIViewController {
             }
         }
     }
-
-    private func getVideosNextPage(url: String) {
+    
+    func getVideosNextPage(url: String) {
         dataRepository.getVideosNextPage(nextUrl: url){ [weak self] (data, error) in
             guard let self = self else { return }
             if let error = error {
@@ -147,21 +146,21 @@ final class VideoScreenViewController: UIViewController {
             }
         }
     }
-
-    private func loadMore(url: String) {
+    
+     func loadMore(url: String) {
         if !isLoadMore {
             isLoadMore = true
             getVideosNextPage(url: url)
         }
     }
-
+    
 }
 
 extension VideoScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionView == categoryCollectionView ? categories.count : videos.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionView {
             guard let cell: CategoryCollectionViewCell =
@@ -199,7 +198,7 @@ extension VideoScreenViewController: UICollectionViewDataSource {
 }
 
 extension VideoScreenViewController: UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if videoCollectionView == collectionView {
             let detailScreen = DetailViewController(nibName: "DetailViewController", bundle: nil)
@@ -212,7 +211,7 @@ extension VideoScreenViewController: UICollectionViewDelegate {
             categoryCollectionView.reloadData()
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         let lastIndex = videos.count - 1
@@ -220,7 +219,7 @@ extension VideoScreenViewController: UICollectionViewDelegate {
             loadMore(url: urlNextPage)
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
@@ -244,7 +243,7 @@ extension VideoScreenViewController: UICollectionViewDelegate {
             assert(false, "Unexpected element kind")
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         didEndDisplayingSupplementaryView view: UICollectionReusableView,
                         forElementOfKind elementKind: String, at indexPath: IndexPath) {

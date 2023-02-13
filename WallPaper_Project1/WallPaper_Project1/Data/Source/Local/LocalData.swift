@@ -65,7 +65,7 @@ struct LocalData: CoreDataRepositoryType {
         }
     }
 
-    func getDataFromCoreData(nameEntity: String, completion: @escaping ([NSManagedObject], Error?) -> (Void)) {
+    func getDataFromCoreData(nameEntity: String, completion: @escaping ([NSManagedObject], Error?) -> Void) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: nameEntity)
         fetchRequest.includesPropertyValues = false
@@ -89,7 +89,7 @@ struct LocalData: CoreDataRepositoryType {
                     return true
                 }
             }
-        } catch  {
+        } catch {
             return false
         }
         return false

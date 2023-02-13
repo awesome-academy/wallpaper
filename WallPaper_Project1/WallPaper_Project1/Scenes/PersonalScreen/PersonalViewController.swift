@@ -9,22 +9,22 @@ import UIKit
 import CoreData
 
 final class PersonalViewController: UIViewController {
-    @IBOutlet private weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet private weak var buttonViewContainer: UIView!
     @IBOutlet private weak var numberDownloadLabel: UILabel!
-    @IBOutlet private weak var numberFavoriteLabel: UILabel!
+    @IBOutlet weak var numberFavoriteLabel: UILabel!
     @IBOutlet private weak var favoriteButton: UIButton!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     private var isPhoto = true
     private var images = [Image]()
     private var videos = [Videos]()
-    private let coreData = LocalData.shared
-    private var dataDownloadFromCoreData = [Media]()
+    let coreData = LocalData.shared
+    var dataDownloadFromCoreData = [Media]()
     private var dataFavoriteFromCoreData = [Media]()
     private let apiCaller = APICaller.shared
     private let refreshControl = UIRefreshControl()
     private var isDownloadButtonTapped = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
@@ -33,50 +33,51 @@ final class PersonalViewController: UIViewController {
         configRefesh()
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name(rawValue: "UpdatePersonalViewController"), object: nil)
     }
-
+    
     @objc func update() {
         getDataFromCoreData()
         updateNumberFavoriteAndDownload()
         collectionView?.reloadData()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         checkNetworkConnection()
     }
-
-    private func checkNetworkConnection() {
+    
+    func checkNetworkConnection() {
         if NetWorkMonitor.shared.isConnected == false {
             showPopUp(notice: "No Network connection")
         }
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateNumberFavoriteAndDownload()
     }
-
-    private func updateNumberFavoriteAndDownload() {
+    
+    func updateNumberFavoriteAndDownload() {
         numberDownloadLabel?.text = "\(dataDownloadFromCoreData.count)"
         numberFavoriteLabel?.text = "\(dataFavoriteFromCoreData.count)"
     }
-
-    private func configRefesh() {
+    
+    func configRefesh() {
         collectionView.refreshControl = refreshControl
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
-
-    @objc private func refreshData(_ sender: Any) {
+    
+    @objc func refreshData(_ sender: Any) {
         getDataFromCoreData()
         updateNumberFavoriteAndDownload()
-        DispatchQueue.main.async {[unowned self] in
-            refreshControl.endRefreshing()
-            collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            self.refreshControl.endRefreshing()
+            self.collectionView.reloadData()
         }
     }
-
-    private func getDataFromCoreData() {
-        coreData.getDataFromCoreData(nameEntity: "DownloadData") {[unowned self] items, error in
+    
+    func getDataFromCoreData() {
+        coreData.getDataFromCoreData(nameEntity: "DownloadData") { [unowned self] items, error in
             guard error == nil else {
                 showPopUp(notice: "Could not fetch. \(String(describing: error))")
                 return
@@ -85,8 +86,8 @@ final class PersonalViewController: UIViewController {
                 changeNSManagedObjectToMedia(nsManagedObject: $0)
             }
         }
-
-        coreData.getDataFromCoreData(nameEntity: "FavoriteData") {[unowned self] items, error in
+        
+        coreData.getDataFromCoreData(nameEntity: "FavoriteData") { [unowned self] items, error in
             guard error == nil else {
                 showPopUp(notice: "Could not fetch. \(String(describing: error))")
                 return
@@ -96,29 +97,30 @@ final class PersonalViewController: UIViewController {
             }
         }
     }
-
-    private func configView() {
+    
+    func configView() {
         buttonViewContainer.layer.cornerRadius = 12
         downloadButton.setTitleColor(.white, for: .normal)
     }
-
-    private func configCollectionView() {
+    
+    func configCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(nibName: ImageCollectionViewCell.self)
         collectionView.register(nibName: VideoCollectionViewCell.self)
     }
-
-    private func showPopUp(notice: String) {
-        DispatchQueue.main.async {[unowned self] in
+    
+    func showPopUp(notice: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
             let popUpView = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
             popUpView.bindData(notice: notice)
-            addChild(popUpView)
-            view.addSubview(popUpView.view)
+            self.addChild(popUpView)
+            self.view.addSubview(popUpView.view)
         }
     }
-
-    private func changeNSManagedObjectToMedia (nsManagedObject: NSManagedObject) -> Media {
+    
+     func changeNSManagedObjectToMedia (nsManagedObject: NSManagedObject) -> Media {
         let id = nsManagedObject.value(forKey: "id") as? Int ?? 0
         let width = nsManagedObject.value(forKey: "width") as? Int
         let height = nsManagedObject.value(forKey: "height") as? Int
@@ -140,35 +142,35 @@ final class PersonalViewController: UIViewController {
                      isVideo: isVideo ?? 0,
                      videoDuration: videoDuration )
     }
-
+    
     @IBAction func downloadButtonTapped(_ sender: Any) {
         isDownloadButtonTapped = true
         getDataFromCoreData()
         downloadButton.setTitleColor(.white, for: .normal)
         favoriteButton.setTitleColor(.gray, for: .normal)
-        DispatchQueue.main.async { [unowned self] in
-            collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
         }
     }
-
+    
     @IBAction func favoriteButtonTapped(_ sender: Any) {
         isDownloadButtonTapped = false
         getDataFromCoreData()
         updateNumberFavoriteAndDownload()
         downloadButton.setTitleColor(.gray, for: .normal)
         favoriteButton.setTitleColor(.white, for: .normal)
-        DispatchQueue.main.async { [unowned self] in
-            collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
         }
     }
 }
 
 extension PersonalViewController: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return isDownloadButtonTapped ? dataDownloadFromCoreData.count : dataFavoriteFromCoreData.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = isDownloadButtonTapped ? dataDownloadFromCoreData[indexPath.row] : dataFavoriteFromCoreData[indexPath.row]
         if data.isVideo == 1 {

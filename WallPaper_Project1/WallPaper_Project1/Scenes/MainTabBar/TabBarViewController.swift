@@ -17,13 +17,13 @@ final class TabBarViewController: UITabBarController {
         configView()
         customTabBar()
     }
-
+    
     private func configView() {
         setViewControllers([imageViewController, videoScreenViewController,
-                                 searchViewController, personalViewController], animated: true)
+                            searchViewController, personalViewController], animated: true)
         configTabBarItem()
     }
-
+    
     private func configTabBarItem() {
         tabBar.tintColor = UIColor.seclectedColor
         tabBar.unselectedItemTintColor = .black
@@ -55,7 +55,7 @@ final class TabBarViewController: UITabBarController {
             }
         }
     }
-
+    
     private func customTabBar() {
         drawLayerTabBar()
         if let items = tabBar.items {
@@ -66,7 +66,7 @@ final class TabBarViewController: UITabBarController {
         tabBar.itemWidth = 40
         tabBar.itemPositioning = .centered
     }
-
+    
     private func drawLayerTabBar() {
         let layer = CAShapeLayer()
         let roundRect = CGRect(x: 50, y: tabBar.bounds.minY, width: tabBar.bounds.width - 100,
@@ -83,5 +83,5 @@ final class TabBarViewController: UITabBarController {
         layer.fillColor = UIColor(#colorLiteral(red: 0.9336340427, green: 0.9336340427, blue: 0.9336340427, alpha: 1)).cgColor
         tabBar.layer.insertSublayer(layer, at: 0)
     }
-
+    
 }
